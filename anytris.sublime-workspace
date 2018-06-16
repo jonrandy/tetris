@@ -1,0 +1,529 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"font-",
+				"font-family"
+			],
+			[
+				"in",
+				"input-sm"
+			],
+			[
+				"sele",
+				"selectedIndex"
+			],
+			[
+				"new",
+				"newSettings"
+			],
+			[
+				"get",
+				"getSettings"
+			],
+			[
+				"lis",
+				"listOnly"
+			],
+			[
+				"align",
+				"text-align"
+			],
+			[
+				"bui",
+				"buildFieldSummary"
+			],
+			[
+				"acce",
+				"access_code"
+			],
+			[
+				"is",
+				"isTeacher"
+			],
+			[
+				"stud",
+				"studystartdate"
+			],
+			[
+				"dt",
+				"dtbits"
+			],
+			[
+				"inline",
+				"inline-block"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "index.html",
+			"settings":
+			{
+				"buffer_size": 168,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "js/main.js",
+			"settings":
+			{
+				"buffer_size": 102,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/Lua/Lua.sublime-build",
+					""
+				],
+				[
+					"Packages/Lua Love/LuaLove.sublime-build",
+					""
+				],
+				[
+					"Packages/Lua Love/LuaLove.sublime-build",
+					"Run"
+				],
+				[
+					"Packages/Lua Love/LuaLove.sublime-build",
+					"Love2D"
+				],
+				[
+					"Packages/Lua Love/LuaLove.sublime-build",
+					"ldoc: File"
+				],
+				[
+					"Packages/Lua Love/LuaLove.sublime-build",
+					"ldoc: Project"
+				],
+				[
+					"Packages/SublimeLove/Love.sublime-build",
+					""
+				]
+			],
+			[
+				"Packages/SublimeLove/Love.sublime-build",
+				""
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 350.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"remo",
+				"Package Control: Remove Package"
+			],
+			[
+				"syn ja",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"syn js",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"syn html",
+				"Set Syntax: HTML"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"html",
+				"Set Syntax: HTML"
+			],
+			[
+				"riot",
+				"Set Syntax: Riot(HTML)"
+			],
+			[
+				"js",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"install ",
+				"Package Control: Install Package"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"linter",
+				"SublimeLinter: Enable Linting"
+			],
+			[
+				"syn riot",
+				"Set Syntax: Riot(HTML)"
+			],
+			[
+				"th",
+				"Themr: List themes"
+			],
+			[
+				"them",
+				"Themr: List themes"
+			],
+			[
+				"in",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 501.0
+	},
+	"console":
+	{
+		"height": 471.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = 'df21e130d211cfc94d9b0905775a7c0f' + '1e3d39e33b79698005270310898eea76'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by) ",
+			"import urllib.request,os,hashlib; h = 'eb2297e1a458f27d836c04bb0cbaf282' + 'd0e7a3098092775ccb37ca9d6b2e4b7d'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by) ",
+			" import urllib.request,os,hashlib; h = 'eb2297e1a458f27d836c04bb0cbaf282' + 'd0e7a3098092775ccb37ca9d6b2e4b7d'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by) "
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/home/jon/Dev/anytris",
+		"/home/jon/Dev/anytris/js"
+	],
+	"file_history":
+	[
+		"/home/jon/Desktop/tax.txt",
+		"/home/jon/Desktop/Steam.desktop",
+		"/home/jon/Desktop/INSIDE Demo.desktop",
+		"/home/jon/.config/drawers/Test.conf",
+		"/home/jon/Dropbox/Work/Clients/Shiva Shakti/Readme.txt",
+		"/home/jon/Desktop/MyCrypto.com.desktop",
+		"/home/jon/Desktop/Fix Internet.desktop",
+		"/home/jon/.local/share/applications/chrome-pkclgpgponpjmpfokoepglboejdobkpl-Default.desktop",
+		"/home/jon/.local/share/applications/chrome-pbpoojghcbigbheeamegjbdailkaeglf-Default.desktop",
+		"/home/jon/.local/share/applications/chrome-menkifleemblimdogmoihpfopnplikde-Default.desktop",
+		"/home/jon/.local/share/applications/chrome-aapocclcgogkmnckokdopfmhonfmgoek-Default.desktop",
+		"/usr/local/lib/python2.7/dist-packages/powerline/config_files/themes/shell/default.json",
+		"/home/jon/.bashrc",
+		"/usr/local/lib/python2.7/dist-packages/powerline/config_files/colorschemes/shell/default.json",
+		"/home/jon/.local/share/applications/aaa.desktop",
+		"/home/jon/.chrome-remote-desktop-session",
+		"/home/jon/.bash_profile",
+		"/home/jon/backupPhotosMusic.sh",
+		"/home/jon/.local/share/applications/firefox-nightly.desktop",
+		"/home/jon/.cache/.fr-xmeSPT/install.txt",
+		"/home/jon/Downloads/BitTorrent Incoming/Thor.Ragnarok.2017.720p.WEB-DL.XviD.AC3-FGT/English.srt",
+		"/run/user/1001/gvfs/mtp:host=%5Busb%3A002%2C006%5D/Phone storage/openVPN/AfricaMiddleEast-Cairo.ovpn",
+		"/home/jon/Downloads/RemoteMouse/install.txt",
+		"/home/jon/onename-backup.txt",
+		"/home/jon/blockstack_phrase.txt",
+		"/home/jon/Downloads/onename-backup.txt",
+		"/home/jon/Dropbox/Public/DNS/write_ip_js",
+		"/home/jon/.local/share/applications/kin.desktop",
+		"/home/jon/.themes/jon/gnome-shell/gnome-shell.css",
+		"/home/jon/Desktop/chrome-kjbdgfilnfhdoflbpgamdcdgpehopbep-Default.desktop",
+		"/home/jon/.local/share/applications/trash.desktop",
+		"/run/user/1001/gvfs/ftp:host=ftp.shivashakti.org.np/shivashakti.org.np/content/gallery/school-opening.md",
+		"/run/user/1001/gvfs/ftp:host=ftp.shivashakti.org.np/shivashakti.org.np/themes/shiva/index.html",
+		"/run/user/1001/gvfs/ftp:host=ftp.shivashakti.org.np/shivashakti.org.np/content/gallery/flood-relief.md",
+		"/home/jon/Downloads/session_manager_settings",
+		"/media/jon/Kindle/wininfo_screenshot_2017_09_24T10_14_05+0700.txt",
+		"/home/jon/Dropbox/Product Keys/sublime.txt",
+		"/run/user/1001/gvfs/ftp:host=ftp.shivashakti.org.np/shivashakti.org.np/content/index.md",
+		"/home/jon/Desktop/Remote Mouse Serve.desktop",
+		"/home/jon/Desktop/today.txt",
+		"/home/jon/Desktop/voltra.htm",
+		"/home/jon/.cache/.fr-Quh208/install.txt",
+		"/home/jon/Dropbox/30DayPlank/untitled.html",
+		"/home/jon/Dev/merchant_dash/stores/api.js",
+		"/home/jon/.config/sublime-text-3/Packages/User/SublimeLinter.sublime-settings",
+		"/home/jon/.config/sublime-text-3/Packages/SublimeLinter/SublimeLinter.sublime-settings",
+		"/home/jon/Dev/merchant_dash/tags/app.tag",
+		"/home/jon/Dev/merchant_dash/tags/pages/api.tag",
+		"/home/jon/.config/sublime-text-3/Packages/User/TernJS.sublime-settings",
+		"/home/jon/Dropbox/Public/DNS/go.htm",
+		"/home/jon/Dev/squirt-163807/www/squirt.js",
+		"/home/jon/Dev/squirt-163807/www/bookmarklet.js",
+		"/home/jon/Dev/squirt-163807/app.yaml",
+		"/home/jon/Desktop/config.cfg",
+		"/home/jon/Dropbox/Public/DNS/ip.js",
+		"/home/jon/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
+		"/home/jon/.config/sublime-text-3/Packages/Default/Preferences.sublime-settings",
+		"/home/jon/fix_internet.sh",
+		"/home/jon/.ssh/id_rsa_diply",
+		"/home/jon/.ssh/id_rsa_diply.pub",
+		"/home/jon/Downloads/BitTorrent Incoming/The Wailing.srt",
+		"/home/jon/Desktop/The Wailing.srt",
+		"/home/jon/.gtk-bookmarks",
+		"/home/jon/Dropbox/Public/index.htm",
+		"/home/jon/Dropbox/Work/Clients/RAWPixel/Dev/SmartImage Paging Extension/SmartImage Paging Enhancement.user.js",
+		"/opt/google/chrome-remote-desktop/chrome-remote-desktop.fixed",
+		"/opt/google/chrome-remote-desktop/chrome-remote-desktop",
+		"/opt/google/chrome-remote-desktop/chrome-remote-desktop.new",
+		"/home/jon/Dropbox/Work/Clients/RAWPixel/Dev/SmartImage Chrome Extension/myscript.js",
+		"/home/jon/Dropbox/Work/Clients/RAWPixel/Dev/SmartImage Chrome Extension/manifest.json",
+		"/home/jon/Desktop/dreamweb/game/DW.BAT",
+		"/home/jon/.dosbox/dosbox-0.74.conf",
+		"/home/jon/Dropbox/Public/DNS/getip",
+		"/home/jon/Dropbox/Notes/Croatia.txt",
+		"/run/user/1001/gvfs/sftp:host=rajja.pair.com/usr/home/praxad/public_html/config.php",
+		"/run/user/1001/gvfs/sftp:host=rajja.pair.com/usr/home/praxad/public_html/app/templates/pages/admin/orderlist.tpl.php",
+		"/run/user/1001/gvfs/sftp:host=rajja.pair.com/usr/home/praxad/public_html/app/templates/pages/registration/register.tpl.php",
+		"/run/user/1001/gvfs/sftp:host=rajja.pair.com/usr/home/praxad/public_html/app/templates/pages/admin/userlist.tpl.php",
+		"/run/user/1001/gvfs/sftp:host=rajja.pair.com/usr/home/praxad/public_html/app/classes/adminappcontroller.class.php",
+		"/run/user/1001/gvfs/sftp:host=rajja.pair.com/usr/home/praxad/public_html/app/classes/appcontroller.class.php",
+		"/run/user/1001/gvfs/sftp:host=rajja.pair.com/usr/home/praxad/public_html/app/controllers/access.php",
+		"/run/user/1001/gvfs/sftp:host=rajja.pair.com/usr/home/praxad/public_html/system/models/user.class.php",
+		"/run/user/1001/gvfs/sftp:host=rajja.pair.com/usr/home/praxad/public_html/app/controllers/adminusers.php",
+		"/run/user/1001/gvfs/sftp:host=rajja.pair.com/usr/home/praxad/public_html/app/controllers/adminorders.php",
+		"/run/user/1001/gvfs/sftp:host=rajja.pair.com/usr/home/praxad/public_html/app/templates/pages/registration/register_main.tpl.php",
+		"/run/user/1001/gvfs/sftp:host=rajja.pair.com/usr/home/praxad/public_html/app/templates/pages/orders/ordersMain.tpl.php",
+		"/run/user/1001/gvfs/sftp:host=rajja.pair.com/usr/home/praxad/public_html/app/templates/pages/admin/edituser.tpl.php",
+		"/run/user/1001/gvfs/sftp:host=rajja.pair.com/usr/home/praxad/public_html/app/templates/emails/receipt.tpl.php",
+		"/run/user/1001/gvfs/sftp:host=rajja.pair.com/usr/home/praxad/public_html/system/classes/lang.class.php",
+		"/run/user/1001/gvfs/sftp:host=rajja.pair.com/usr/home/praxad/public_html/app/controllers/admin.php",
+		"/run/user/1001/gvfs/sftp:host=rajja.pair.com/usr/home/praxad/public_html/system/classes/controller.class.php",
+		"/run/user/1001/gvfs/sftp:host=rajja.pair.com/usr/home/praxad/public_html/app/controllers/students.php",
+		"/run/user/1001/gvfs/sftp:host=rajja.pair.com/usr/home/praxad/public_html/index.php",
+		"/run/user/1001/gvfs/sftp:host=rajja.pair.com/usr/home/praxad/public_html/app/css/site.css",
+		"/run/user/1001/gvfs/sftp:host=rajja.pair.com/usr/home/praxad/public_html/system/includes/functions.php",
+		"/home/jon/jshint.conf",
+		"/home/jon/Desktop/untitled.js"
+	],
+	"find":
+	{
+		"height": 26.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 168,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								79,
+								79
+							]
+						],
+						"settings":
+						{
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/HTML/HTML.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "js/main.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 102,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								48,
+								48
+							]
+						],
+						"settings":
+						{
+							"SL.52.region_keys":
+							[
+								"sublime_linter.protected_regions",
+								"SL.jshint.Gutter.|region.yellowish markup.warning.sublime_linter|dot",
+								"SL.jshint.Highlights.|21b6e3b18096b2fa7869de241472836d579b603e3f0a4095d939225370d28fc8|region.yellowish markup.warning.sublime_linter|32",
+								"SL.jshint.Highlights.|ae781db3960f6de8c7cf69a1245f7e80c03f210392374aa621812661114c44d1|region.yellowish markup.warning.sublime_linter|32"
+							],
+							"git_gutter_is_enabled": true,
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 26.0
+	},
+	"input":
+	{
+		"height": 34.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.SublimeLinter":
+	{
+		"height": 0.0
+	},
+	"output.SublimeLinter Messages":
+	{
+		"height": 116.0
+	},
+	"output.exec":
+	{
+		"height": 248.0
+	},
+	"output.figlet_preview":
+	{
+		"height": 276.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "anytris.sublime-project",
+	"replace":
+	{
+		"height": 48.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"customer",
+				"tags/pages/customers.tag"
+			],
+			[
+				"logs",
+				"tags/pages/logs.tag"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 239.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
