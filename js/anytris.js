@@ -23,240 +23,65 @@ export function Board({
 		console.log(blocks);
 	}
 
-	return _self = Object.seal({
+	return _self = {
 		width,
 		height,
 		test
-	});
+	};
 
 }
 
 
-export function Piece() {
+export function Piece({
+	x,
+	y,
+	tile,
+	tileState = 0
+}) {
 
 	let
-		x,
-		y,
-		shape,
-		state
+		_self,
+		_lastX,
+		_lastY,
+		_lastTileState
 	;
 
-	function rotate(dir) {
-
+	function rotate(dir=1) {
+		_saveLast();
+		_self.tileState = (_self.tileState + _self.tile.states.length + dir) % _self.tile.states.length;
+		return _self;
 	}
 
 	function move(destX, destY) {
-
+		_saveLast();
+		[_self.x, _self.y] = [destX, destY];
+		return _self;
 	}
 
 	function moveRel(dx, dy) {
-
+		return move(_self.x+dx, _self.y+dy);
 	}
+
+	function undo() {
+		[_self.x, _self.y, _self.tileState] = [_lastX, _lastY, _lastTileState];
+		return _self;
+	}
+
+	function _saveLast() {
+		[_lastX, _lastY, _lastTileState] = [_self.x, _self.y, _self.tileState];
+	}
+
+	return _self = {
+		x,
+		y,
+		tile,
+		tileState,
+		rotate,
+		move,
+		moveRel,
+		undo
+	};
 
 }
 
 
-export const Shapes = [
-
-	// I
-	{
-		colour: 5, // cyan
-		states: [
-			[
-				{ x: 0, y: 1 },
-				{ x: 1, y: 1 },
-				{ x: 2, y: 1 },
-				{ x: 3, y: 1 }
-			],
-			[
-				{ x: 2, y: 0 },
-				{ x: 2, y: 1 },
-				{ x: 2, y: 2 },
-				{ x: 2, y: 3 }
-			],
-			[
-				{ x: 0, y: 2 },
-				{ x: 1, y: 2 },
-				{ x: 2, y: 2 },
-				{ x: 3, y: 2 }
-			],
-			[
-				{ x: 1, y: 0 },
-				{ x: 1, y: 1 },
-				{ x: 1, y: 2 },
-				{ x: 1, y: 3 }
-			]
-		]
-	},
-
-	// J
-	{
-		colour: 1, // blue
-		states: [
-			[
-				{ x: 0, y: 0 },
-				{ x: 0, y: 1 },
-				{ x: 1, y: 1 },
-				{ x: 2, y: 1 }
-			],
-			[
-				{ x: 1, y: 0 },
-				{ x: 2, y: 0 },
-				{ x: 1, y: 1 },
-				{ x: 1, y: 2 }
-			],
-			[
-				{ x: 0, y: 1 },
-				{ x: 1, y: 1 },
-				{ x: 2, y: 1 },
-				{ x: 2, y: 2 }
-			],
-			[
-				{ x: 1, y: 0 },
-				{ x: 1, y: 1 },
-				{ x: 0, y: 2 },
-				{ x: 1, y: 2 }
-			]
-		]
-	},
-
-	// L
-	{
-		colour: 6, // orange/brown
-		states: [
-			[
-				{ x: 2, y: 0 },
-				{ x: 0, y: 1 },
-				{ x: 1, y: 1 },
-				{ x: 2, y: 1 }
-			],
-			[
-				{ x: 1, y: 0 },
-				{ x: 2, y: 2 },
-				{ x: 1, y: 1 },
-				{ x: 1, y: 2 }
-			],
-			[
-				{ x: 0, y: 1 },
-				{ x: 1, y: 1 },
-				{ x: 2, y: 1 },
-				{ x: 0, y: 2 }
-			],
-			[
-				{ x: 1, y: 0 },
-				{ x: 1, y: 1 },
-				{ x: 0, y: 0 },
-				{ x: 1, y: 2 }
-			]
-		]
-	},
-
-	// O
-	{
-		colour: 14, // yellow
-		states: [
-			[
-				{ x: 1, y: 0 },
-				{ x: 2, y: 0 },
-				{ x: 1, y: 1 },
-				{ x: 2, y: 1 }
-			]
-		]
-	},
-
-	// S
-	{
-		colour: 10, // green
-		states: [
-			[
-				{ x: 1, y: 0 },
-				{ x: 2, y: 0 },
-				{ x: 0, y: 1 },
-				{ x: 1, y: 1 }
-			],
-			[
-				{ x: 1, y: 0 },
-				{ x: 1, y: 1 },
-				{ x: 2, y: 1 },
-				{ x: 2, y: 2 }
-			],
-			[
-				{ x: 1, y: 1 },
-				{ x: 2, y: 1 },
-				{ x: 0, y: 2 },
-				{ x: 1, y: 2 }
-			],
-			[
-				{ x: 0, y: 0 },
-				{ x: 0, y: 1 },
-				{ x: 1, y: 1 },
-				{ x: 1, y: 2 }
-			]
-		]
-	},
-
-	// T
-	{
-		colour: 13, // purple
-		states: [
-			[
-				{ x: 1, y: 0 },
-				{ x: 0, y: 1 },
-				{ x: 1, y: 1 },
-				{ x: 2, y: 1 }
-			],
-			[
-				{ x: 1, y: 0 },
-				{ x: 1, y: 1 },
-				{ x: 2, y: 1 },
-				{ x: 1, y: 2 }
-			],
-			[
-				{ x: 0, y: 1 },
-				{ x: 1, y: 1 },
-				{ x: 2, y: 1 },
-				{ x: 1, y: 2 }
-			],
-			[
-				{ x: 1, y: 0 },
-				{ x: 0, y: 1 },
-				{ x: 1, y: 1 },
-				{ x: 1, y: 2 }
-			]
-		]
-	},
-
-	// Z
-	{
-		colour: 2, // red
-		states: [
-			[
-				{ x: 0, y: 0 },
-				{ x: 1, y: 0 },
-				{ x: 1, y: 1 },
-				{ x: 2, y: 1 }
-			],
-			[
-				{ x: 2, y: 0 },
-				{ x: 1, y: 1 },
-				{ x: 2, y: 1 },
-				{ x: 1, y: 2 }
-			],
-			[
-				{ x: 0, y: 1 },
-				{ x: 1, y: 1 },
-				{ x: 1, y: 2 },
-				{ x: 2, y: 2 }
-			],
-			[
-				{ x: 1, y: 0 },
-				{ x: 0, y: 1 },
-				{ x: 1, y: 1 },
-				{ x: 0, y: 2 }
-			]
-		]
-	}
-
-
-
-];
