@@ -18,8 +18,11 @@ export function Board({
 	}
 
 	function pieceFits(piece) {
-		blockFits();
-		// TODO - fill in
+		piece.tile.states[piece.tileState].forEach( ([x, y, c]) => {
+			x;
+			y;
+			c;
+		});
 	}
 
 	function test() {
@@ -30,7 +33,8 @@ export function Board({
 		width,
 		height,
 		test,
-		activePieces
+		activePieces,
+		pieceFits
 	};
 
 }
