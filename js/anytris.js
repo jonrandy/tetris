@@ -2,13 +2,15 @@ export function Board({
 	width = 10,
 	height = 40,
 	playHeight = 20,
-	initialFill = ''
+	initialFill = '',
+	checkBlock = BlockCheck
 } = {}) {
 
 	let
 		_self,
 		activePieces = [],
-		blocks = _makeBlocks(width, height, initialFill)
+		blocks = _makeBlocks(width, height, initialFill),
+		blockFits = checkBlock
 	;
 
 	function _makeBlocks(w, h, fill) {
@@ -16,7 +18,8 @@ export function Board({
 	}
 
 	function pieceFits(piece) {
-
+		blockFits();
+		// TODO - fill in
 	}
 
 	function test() {
@@ -26,7 +29,8 @@ export function Board({
 	return _self = {
 		width,
 		height,
-		test
+		test,
+		activePieces
 	};
 
 }
@@ -85,3 +89,4 @@ export function Piece({
 }
 
 
+export const BlockCheck = (thisBlock, withBoardBlock) => !withBoardBlock ? thisBlock : false;
