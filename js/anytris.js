@@ -32,12 +32,17 @@ export function Board({
 		});
 	}
 
+	function allBlocks(includeActivePieces = true) {
+		// todo - fill in
+	}
+
 	return _self = {
 		width,
 		height,
 		playHeight,
 		activePieces,
-		pieceFits
+		pieceFits,
+		allBlocks
 	};
 
 }
