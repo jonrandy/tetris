@@ -18,21 +18,18 @@ export function Board({
 	}
 
 	function pieceFits(piece) {
-		piece.tile.states[piece.tileState].forEach( ([x, y, c]) => {
-			x;
-			y;
-			c;
+		return piece.tile.states[piece.tileState].every( ([x, y, c]) => {
+			c = c || piece.tile.colour;
+			x = piece.x + x;
+			y = piece.y - y;
+			return blockFits(c, blocks[y][x]);
 		});
-	}
-
-	function test() {
-		console.log(blocks);
 	}
 
 	return _self = {
 		width,
 		height,
-		test,
+		playHeight,
 		activePieces,
 		pieceFits
 	};
