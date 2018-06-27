@@ -34,6 +34,9 @@ export function Board({
 
 	function allBlocks(includeActivePieces = true) {
 		// todo - fill in
+		var newArray = currentArray.map(function(arr) {
+			return arr.slice();
+		});
 	}
 
 	return _self = {
