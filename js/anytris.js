@@ -1,3 +1,5 @@
+export const BlockCheck = (thisBlockType, withBoardBlockType) => !withBoardBlockType ? thisBlockType : false;
+
 export function Board({
 	width = 10,
 	height = 40,
@@ -9,20 +11,24 @@ export function Board({
 	let
 		_self,
 		activePieces = [],
-		blocks = _makeBlocks(width, height, initialFill),
+		blockTypeArr = _makeBlockTypeArr(width, height, initialFill),
 		blockFits = checkBlock
 	;
 
-	function _makeBlocks(w, h, fill) {
+	blockTypeArr[20][3]='1';
+
+	function _makeBlockTypeArr(w, h, fill) {
 		return [...Array(h)].map(() => [...Array(w)].map(() => fill))
 	}
 
 	function pieceFits(piece) {
-		return piece.tile.states[piece.tileState].every( ([x, y, c]) => {
-			c = c || piece.tile.colour;
-			x = piece.x + x;
-			y = piece.y - y;
-			return blockFits(c, blocks[y][x]);
+		return piece.tile.states[piece.tileState].every( (block) => {
+			let
+				blockDets = piece.blockDetails(block),
+				x = piece.x + blockDets.x,
+				y = piece.y - blockDets.y
+			;
+			return blockFits(blockDets.type, blockTypeArr[y][x]);
 		});
 	}
 
@@ -50,6 +56,15 @@ export function Piece({
 		_lastY,
 		_lastTileState
 	;
+
+	function blockDetails(block) {
+		let [x, y, t] = block;
+		return {
+			x,
+			y,
+			type : t || _self.tile.type
+		}
+	}
 
 	function rotate(dir=1) {
 		_saveLast();
@@ -84,10 +99,10 @@ export function Piece({
 		rotate,
 		move,
 		moveRel,
-		undo
+		undo,
+		blockDetails
 	};
 
 }
 
 
-export const BlockCheck = (thisBlock, withBoardBlock) => !withBoardBlock ? thisBlock : false;

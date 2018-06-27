@@ -2,7 +2,7 @@ export const Tetrominos = [
 
 	// I
 	{
-		colour: 5, // cyan
+		type: 5, // cyan
 		states: [
 			[
 				[ 0, 2 ],
@@ -21,7 +21,7 @@ export const Tetrominos = [
 
 	// J
 	{
-		colour: 1, // blue
+		type: 1, // blue
 		states: [
 			[
 				[ 0, 1 ],
@@ -52,7 +52,7 @@ export const Tetrominos = [
 
 	// L
 	{
-		colour: 6, // orange/brown
+		type: 6, // orange/brown
 		states: [
 			[
 				[ 0, 1 ],
@@ -83,7 +83,7 @@ export const Tetrominos = [
 
 	// O
 	{
-		colour: 14, // yellow
+		type: 14, // yellow
 		states: [
 			[
 				[ 1, 1 ],
@@ -96,7 +96,7 @@ export const Tetrominos = [
 
 	// S
 	{
-		colour: 10, // green
+		type: 10, // green
 		states: [
 			[
 				[ 1, 1 ],
@@ -115,7 +115,7 @@ export const Tetrominos = [
 
 	// T
 	{
-		colour: 13, // purple
+		type: 13, // purple
 		states: [
 			[
 				[ 0, 1 ],
@@ -146,7 +146,7 @@ export const Tetrominos = [
 
 	// Z
 	{
-		colour: 2, // red
+		type: 2, // red
 		states: [
 			[
 				[ 0, 1 ],
