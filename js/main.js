@@ -11,6 +11,13 @@ let myPiece = Piece({
 });
 
 console.log(myBoard.pieceFits(myPiece));
+console.log(myBoard.allBlocks());
+
+myBoard.activePieces.push(myPiece);
+
+console.log(myBoard);
+
+console.log(myBoard.allBlocks());
 
 
 

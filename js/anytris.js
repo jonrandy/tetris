@@ -15,8 +15,6 @@ export function Board({
 		blockFits = checkBlock
 	;
 
-	blockTypeArr[20][3]='1';
-
 	function _makeBlockTypeArr(w, h, fill) {
 		return [...Array(h)].map(() => [...Array(w)].map(() => fill))
 	}
@@ -33,10 +31,23 @@ export function Board({
 	}
 
 	function allBlocks(includeActivePieces = true) {
-		// todo - fill in
-		var newArray = currentArray.map(function(arr) {
-			return arr.slice();
+		let all = blockTypeArr.map(function(row) {
+			return row.slice();
 		});
+		if (includeActivePieces) {
+			activePieces.forEach( (piece) => {
+				piece.tile.states[piece.tileState].forEach( (block) => {
+					let
+						blockDets = piece.blockDetails(block),
+						x = piece.x + blockDets.x,
+						y = piece.y - blockDets.y,
+						finalType = blockFits(blockDets.type, all[y][x])
+					;
+					if (finalType!==false) all[y][x] = finalType;
+				});
+			});
+		}
+		return all;
 	}
 
 	return _self = {
