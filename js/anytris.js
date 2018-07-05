@@ -23,6 +23,11 @@ export function Board({
 		return piece.tile.states[piece.tileState].every( (block) => _pieceBlock(piece, block)[2] );
 	}
 
+	function freeze(pieces = false) {
+		blockTypeArr = allBlocks({cropAtPlayHeight:false});
+		self.activePieces = [];
+	}
+
 	function _pieceBlock(piece, block) {
 		let
 			blockDets = piece.blockDetail(block),
@@ -32,7 +37,10 @@ export function Board({
 		return [x, y, (x>=0 && y>=0 && x<_self.width && y<_self.height) && blockFits(blockDets.type, blockTypeArr[y][x])];
 	}
 
-	function allBlocks(includeActivePieces = true) {
+	function allBlocks({
+		includeActivePieces = true,
+		cropAtPlayHeight = true
+	} = {}) {
 		let all = blockTypeArr.map((row) => row.slice());
 		if (includeActivePieces) {
 			activePieces.forEach( (piece) => {
@@ -42,7 +50,7 @@ export function Board({
 				});
 			});
 		}
-		return all.slice(0, _self.playHeight);
+		return cropAtPlayHeight ? all.slice(0, _self.playHeight) : all;
 	}
 
 	return _self = {
@@ -51,7 +59,8 @@ export function Board({
 		playHeight,
 		activePieces,
 		pieceFits,
-		allBlocks
+		allBlocks,
+		freeze
 	};
 
 }

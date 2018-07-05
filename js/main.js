@@ -4,11 +4,12 @@ import { Tetrominos } from'./tetris.js';
 
 
 let myBoard = Board();
-let myPiece = Piece({
-	x: 3,
+let createPiece = () =>Piece({
+	x: Math.random()*8|0,
 	y: myBoard.playHeight+3,
-	tile: Tetrominos[6]
-});
+	tile: Tetrominos[Math.random()*6|0]
+}).rotate(Math.random()*4|0);
+let myPiece = createPiece();
 
 console.log(myBoard.pieceFits(myPiece));
 console.log(myBoard.allBlocks());
@@ -22,12 +23,17 @@ draw(myBoard);
 
 window.setInterval(() => {
 	myPiece.moveRel(0,-1);
-	if (!myBoard.pieceFits(myPiece)) myPiece.undo();
+	if (!myBoard.pieceFits(myPiece)) {
+		myPiece.undo();
+		myBoard.freeze();
+		myPiece = createPiece();
+		myBoard.activePieces.push(myPiece);
+	}
 	draw(myBoard);
-}, 500);
+}, 50);
 
 
 function draw(board) {
 	let blocks = board.allBlocks();
-	b.value = blocks.reverse().map( (row,i) => row.map( (col) => col?'x':'.' ).join('')).join('');
+	b.value = blocks.reverse().map( (row,i) => '     '+row.map( (col) => col?'X':'.' ).join('')).join("\n");
 }
