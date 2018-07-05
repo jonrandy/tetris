@@ -20,39 +20,25 @@ export function Board({
 	}
 
 	function pieceFits(piece) {
-		return piece.tile.states[piece.tileState].every( (block) => {
-			let
-				blockDets = piece.blockDetail(block),
-				x = piece.x + blockDets.x,
-				y = piece.y - blockDets.y
-			;
-			return (x>=0 && y>=0 && x<_self.width && y<_self.height) && blockFits(blockDets.type, blockTypeArr[y][x]);
-		});
+		return piece.tile.states[piece.tileState].every( (block) => _pieceBlock(piece, block)[2] );
 	}
 
-	function _pieceBlockType(piece, block) {
+	function _pieceBlock(piece, block) {
 		let
 			blockDets = piece.blockDetail(block),
 			x = piece.x + blockDets.x,
 			y = piece.y - blockDets.y
 		;
-		return (x>=0 && y>=0 && x<_self.width && y<_self.height) && blockFits(blockDets.type, blockTypeArr[y][x]);
+		return [x, y, (x>=0 && y>=0 && x<_self.width && y<_self.height) && blockFits(blockDets.type, blockTypeArr[y][x])];
 	}
 
 	function allBlocks(includeActivePieces = true) {
-		let all = blockTypeArr.map(function(row) {
-			return row.slice();
-		});
+		let all = blockTypeArr.map((row) => row.slice());
 		if (includeActivePieces) {
 			activePieces.forEach( (piece) => {
 				piece.tile.states[piece.tileState].forEach( (block) => {
-					let
-						blockDets = piece.blockDetail(block),
-						x = piece.x + blockDets.x,
-						y = piece.y - blockDets.y,
-						finalType = blockFits(blockDets.type, all[y][x])
-					;
-					if (finalType!==false) all[y][x] = finalType;
+					let finalType = _pieceBlock(piece, block);
+					if (finalType[2]!==false) all[finalType[1]][finalType[0]] = finalType[2];
 				});
 			});
 		}
