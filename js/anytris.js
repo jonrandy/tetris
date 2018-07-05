@@ -43,12 +43,13 @@ export function Board({
 	} = {}) {
 		let all = blockTypeArr.map((row) => row.slice());
 		if (includeActivePieces) {
-			activePieces.forEach( (piece) => {
-				piece.tile.states[piece.tileState].forEach( (block) => {
-					let finalType = _pieceBlock(piece, block);
-					if (finalType[2]!==false) all[finalType[1]][finalType[0]] = finalType[2];
-				});
-			});
+			activePieces.forEach( (piece) => 
+				piece.tile.states[piece.tileState].every( (block) => {
+					let finalBlock = _pieceBlock(piece, block);
+					if (finalBlock[2]!==false) all[finalBlock[1]][finalBlock[0]] = finalBlock[2];
+					return finalBlock[2];
+				})
+			);
 		}
 		return cropAtPlayHeight ? all.slice(0, _self.playHeight) : all;
 	}
