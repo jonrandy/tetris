@@ -22,12 +22,21 @@ export function Board({
 	function pieceFits(piece) {
 		return piece.tile.states[piece.tileState].every( (block) => {
 			let
-				blockDets = piece.blockDetails(block),
+				blockDets = piece.blockDetail(block),
 				x = piece.x + blockDets.x,
 				y = piece.y - blockDets.y
 			;
-			return blockFits(blockDets.type, blockTypeArr[y][x]);
+			return (x>=0 && y>=0 && x<_self.width && y<_self.height) && blockFits(blockDets.type, blockTypeArr[y][x]);
 		});
+	}
+
+	function _pieceBlockType(piece, block) {
+		let
+			blockDets = piece.blockDetail(block),
+			x = piece.x + blockDets.x,
+			y = piece.y - blockDets.y
+		;
+		return (x>=0 && y>=0 && x<_self.width && y<_self.height) && blockFits(blockDets.type, blockTypeArr[y][x]);
 	}
 
 	function allBlocks(includeActivePieces = true) {
@@ -38,7 +47,7 @@ export function Board({
 			activePieces.forEach( (piece) => {
 				piece.tile.states[piece.tileState].forEach( (block) => {
 					let
-						blockDets = piece.blockDetails(block),
+						blockDets = piece.blockDetail(block),
 						x = piece.x + blockDets.x,
 						y = piece.y - blockDets.y,
 						finalType = blockFits(blockDets.type, all[y][x])
@@ -47,7 +56,7 @@ export function Board({
 				});
 			});
 		}
-		return all;
+		return all.slice(0, _self.playHeight);
 	}
 
 	return _self = {
@@ -76,7 +85,7 @@ export function Piece({
 		_lastTileState
 	;
 
-	function blockDetails(block) {
+	function blockDetail(block) {
 		let [x, y, t] = block;
 		return {
 			x,
@@ -119,7 +128,7 @@ export function Piece({
 		move,
 		moveRel,
 		undo,
-		blockDetails
+		blockDetail
 	};
 
 }
