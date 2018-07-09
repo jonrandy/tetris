@@ -18,8 +18,12 @@ export function Board({
 		return [...Array(h)].map(() => [...Array(w)].map(() => fill))
 	}
 
-	function pieceFits(piece) {
-		return piece.tile.states[piece.tileState].every( (block) => _pieceBlock(piece, block)[2] );
+	function pieceFits(piece, onBlockChecked = false) {
+		return piece.tile.states[piece.tileState].every( (block) => {
+			let final = _pieceBlock(piece, block);
+			onBlockChecked && onBlockChecked(final);
+			return final[2];
+		});
 	}
 
 	function freeze(pieces) {
@@ -43,11 +47,7 @@ export function Board({
 		if (activePieces) {
 			if (!Array.isArray(activePieces)) activePieces = [activePieces];
 			activePieces.forEach( (piece) => 
-				piece.tile.states[piece.tileState].every( (block) => {
-					let finalBlock = _pieceBlock(piece, block);
-					if (finalBlock[2]!==false) all[finalBlock[1]][finalBlock[0]] = finalBlock[2];
-					return finalBlock[2];
-				})
+				pieceFits(piece, ( [x,y,t] ) => { if (t!==false) all[y][x] = t; })
 			);
 		}
 		return cropAtPlayHeight ? all.slice(0, _self.playHeight) : all;

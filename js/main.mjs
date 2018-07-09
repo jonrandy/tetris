@@ -4,7 +4,7 @@ import { Tetrominos } from'./tetris.mjs';
 
 
 let myBoard = Board();
-let createPiece = () =>Piece({
+let createPiece = ()=>Piece({
 	x: Math.random()*8|0,
 	y: myBoard.playHeight+3,
 	tile: Tetrominos[Math.random()*6|0]
