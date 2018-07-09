@@ -1,6 +1,6 @@
 
-import { Board, Piece } from './anytris.js';
-import { Tetrominos } from'./tetris.js';
+import { Board, Piece } from './anytris.mjs';
+import { Tetrominos } from'./tetris.mjs';
 
 
 let myBoard = Board();
@@ -11,29 +11,23 @@ let createPiece = () =>Piece({
 }).rotate(Math.random()*4|0);
 let myPiece = createPiece();
 
-console.log(myBoard.pieceFits(myPiece));
-console.log(myBoard.allBlocks());
-
-myBoard.activePieces.push(myPiece);
 
 
 let b = window.document.getElementById('board');
 
-draw(myBoard);
 
 window.setInterval(() => {
 	myPiece.moveRel(0,-1);
 	if (!myBoard.pieceFits(myPiece)) {
 		myPiece.undo();
-		myBoard.freeze();
+		myBoard.freeze([myPiece]);
 		myPiece = createPiece();
-		myBoard.activePieces.push(myPiece);
 	}
 	draw(myBoard);
 }, 50);
 
 
 function draw(board) {
-	let blocks = board.allBlocks();
+	let blocks = board.allBlocks({ activePieces: [myPiece] });
 	b.value = blocks.reverse().map( (row,i) => '     '+row.map( (col) => col?'X':'.' ).join('')).join("\n");
 }

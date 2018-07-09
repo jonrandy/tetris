@@ -10,7 +10,6 @@ export function Board({
 
 	let
 		_self,
-		activePieces = [],
 		blockTypeArr = _makeBlockTypeArr(width, height, initialFill),
 		blockFits = checkBlock
 	;
@@ -23,9 +22,8 @@ export function Board({
 		return piece.tile.states[piece.tileState].every( (block) => _pieceBlock(piece, block)[2] );
 	}
 
-	function freeze(pieces = false) {
-		blockTypeArr = allBlocks({cropAtPlayHeight:false});
-		self.activePieces = [];
+	function freeze(pieces) {
+		blockTypeArr = allBlocks({ cropAtPlayHeight: false, activePieces: pieces });
 	}
 
 	function _pieceBlock(piece, block) {
@@ -38,11 +36,12 @@ export function Board({
 	}
 
 	function allBlocks({
-		includeActivePieces = true,
+		activePieces = false,
 		cropAtPlayHeight = true
 	} = {}) {
 		let all = blockTypeArr.map((row) => row.slice());
-		if (includeActivePieces) {
+		if (activePieces) {
+			if (!Array.isArray(activePieces)) activePieces = [activePieces];
 			activePieces.forEach( (piece) => 
 				piece.tile.states[piece.tileState].every( (block) => {
 					let finalBlock = _pieceBlock(piece, block);
@@ -58,7 +57,6 @@ export function Board({
 		width,
 		height,
 		playHeight,
-		activePieces,
 		pieceFits,
 		allBlocks,
 		freeze
