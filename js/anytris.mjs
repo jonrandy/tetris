@@ -41,7 +41,8 @@ export function Board({
 
 	function allBlocks({
 		activePieces = false,
-		cropAtPlayHeight = true
+		cropAtPlayHeight = true,
+		rotate = false
 	} = {}) {
 		let all = blockTypeArr.map((row) => row.slice());
 		if (activePieces) {
@@ -50,7 +51,10 @@ export function Board({
 				pieceFits(piece, ( [x,y,t] ) => { if (t!==false) all[y][x] = t; })
 			);
 		}
-		return cropAtPlayHeight ? all.slice(0, _self.playHeight) : all;
+
+		all = cropAtPlayHeight ? all.slice(0, _self.playHeight) : all;
+
+		return rotate ? all[0].map((col, i) => all.map(row => row[i])) : all;
 	}
 
 	return _self = {
