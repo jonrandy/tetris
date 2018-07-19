@@ -2,7 +2,7 @@ export const BlockCheck = (thisBlockType, withBoardBlockType) => !withBoardBlock
 
 export const WinCheck = (allBlocks) => {
 	var width = allBlocks[0].length;
-	return Array.from(Array(width).keys()).map(x=>[x,y]);
+	return Array.from(Array(width).keys(), x=>[x,y]);
 };
 
 export function Board({
