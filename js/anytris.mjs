@@ -24,6 +24,10 @@ export function Board({
 		return [...Array(h)].map(() => [...Array(w)].map(() => fill))
 	}
 
+	function winningBlocks() {
+		return findWinBlocks(blockTypeArr);
+	}
+
 	function pieceFits(piece, onBlockChecked = false) {
 		return piece.tile.states[piece.tileState].every( (block) => {
 			let final = _pieceBlock(piece, block);
