@@ -1,8 +1,11 @@
 export const BlockCheck = (thisBlockType, withBoardBlockType) => !withBoardBlockType ? thisBlockType : false;
 
 export const WinCheck = (allBlocks) => {
-	var width = allBlocks[0].length;
-	return Array.from(Array(width).keys(), x=>[x,y]);
+	var width = allBlocks[0].length, winners = [];
+	allBlocks.forEach((row, y)=>{
+		if (row.map(x=>x?'x':'').join('').length == width) winners = winners.concat([...Array(width).keys()].map(x=>[x,y]));
+	});
+	return winners;
 };
 
 export function Board({
@@ -73,7 +76,8 @@ export function Board({
 		playHeight,
 		pieceFits,
 		allBlocks,
-		freeze
+		freeze,
+		winningBlocks
 	};
 
 }

@@ -16,18 +16,23 @@ let myPiece = createPiece();
 let b = window.document.getElementById('board');
 
 
-window.setInterval(() => {
+let interval = window.setInterval(() => {
 	myPiece.moveRel(0,-1);
 	if (!myBoard.pieceFits(myPiece)) {
 		myPiece.undo();
 		myBoard.freeze([myPiece]);
+		let winners = myBoard.winningBlocks();
+		if (winners.length) {
+			console.log(winners);
+			window.clearInterval(interval);
+		}
 		myPiece = createPiece();
 	}
 	draw(myBoard);
-}, 50);
+}, 10);
 
 
 function draw(board) {
-	let blocks = board.allBlocks({ activePieces: [myPiece] });
+	let blocks = board.allBlocks({ activePieces: [myPiece], cropAtPlayHeight:true });
 	b.value = blocks.reverse().map( (row,i) => '     '+row.map( (col) => col?'X':'.' ).join('')).join("\n");
 }
