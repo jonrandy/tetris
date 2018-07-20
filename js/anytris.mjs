@@ -1,6 +1,6 @@
 export const BlockCheck = (thisBlockType, withBoardBlockType) => !withBoardBlockType ? thisBlockType : false;
 
-export const WinCheck = (allBlocks) => {
+export const BlocksInFullRows = (allBlocks) => {
 	var width = allBlocks[0].length, winners = [];
 	allBlocks.forEach((row, y)=>{
 		if (row.map(x=>x?'x':'').join('').length == width) winners = winners.concat([...Array(width).keys()].map(x=>[x,y]));
@@ -14,7 +14,7 @@ export function Board({
 	playHeight = 20,
 	initialFill = '',
 	checkBlock = BlockCheck,
-	findWinBlocks = WinCheck
+	findWinBlocks = BlocksInFullRows
 } = {}) {
 
 	let
