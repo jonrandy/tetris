@@ -161,6 +161,12 @@ export const Tetrominos = [
 				[ 1, 2 ]
 			]
 		]
+	},
+
+	// for testing
+	{
+		type:2,
+		states: [[[0,0],[0,1]],[[0,0]]]
 	}
 
 

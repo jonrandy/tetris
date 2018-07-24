@@ -5,10 +5,10 @@ import { Tetrominos } from'./tetris.mjs';
 
 let myBoard = Board();
 let createPiece = ()=>Piece({
-	x: Math.random()*8|0,
+	x: Math.random()*10|0, //8|0,
 	y: myBoard.playHeight+3,
-	tile: Tetrominos[Math.random()*6|0]
-}).rotate(Math.random()*4|0);
+	tile: Tetrominos[7] // Tetrominos[Math.random()*6|0]
+}).rotate(1); //Math.random()*4|0);
 let myPiece = createPiece();
 
 
@@ -23,13 +23,12 @@ let interval = window.setInterval(() => {
 		myBoard.freeze([myPiece]);
 		let winners = myBoard.winningBlocks();
 		if (winners.length) {
-			console.log(winners);
-			window.clearInterval(interval);
+			myBoard.killBlocks(winners);
 		}
 		myPiece = createPiece();
 	}
 	draw(myBoard);
-}, 10);
+}, 5);
 
 
 function draw(board) {

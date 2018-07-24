@@ -20,7 +20,8 @@ export function Board({
 	let
 		_self,
 		blockTypeArr = _makeBlockTypeArr(width, height, initialFill),
-		blockFits = checkBlock
+		blockFits = checkBlock,
+		fillWith = initialFill
 	;
 
 	function _makeBlockTypeArr(w, h, fill) {
@@ -29,6 +30,20 @@ export function Board({
 
 	function winningBlocks() {
 		return findWinBlocks(blockTypeArr);
+	}
+
+	function killBlocks(blocksAt, drop = true) {
+		if (!Array.isArray(blocksAt)) blocks = [blocksAt];
+		blocksAt.sort(([x1,y1], [x2,y2])=>y2-y1);
+		let blocks = arrTranspose(blockTypeArr);
+		blocksAt.forEach(([x,y]) => {
+			if (drop) {
+				blocks[x] = blocks[x].filter((block, ypos)=>ypos!=y).concat([fillWith]);
+			} else {
+				blocks[x][y] = fillWith;
+			}
+		});
+		blockTypeArr = arrTranspose(blocks);
 	}
 
 	function pieceFits(piece, onBlockChecked = false) {
@@ -55,7 +70,7 @@ export function Board({
 	function allBlocks({
 		activePieces = false,
 		cropAtPlayHeight = true,
-		rotate = false
+		transpose = false
 	} = {}) {
 		let all = blockTypeArr.map((row) => row.slice());
 		if (activePieces) {
@@ -67,7 +82,11 @@ export function Board({
 
 		all = cropAtPlayHeight ? all.slice(0, _self.playHeight) : all;
 
-		return rotate ? all[0].map((col, i) => all.map(row => row[i])) : all;
+		return transpose ? arrTranspose(all) : all;
+	}
+
+	function arrTranspose(arr) {
+		return arr[0].map((col, i) => arr.map(row => row[i]));
 	}
 
 	return _self = {
@@ -77,7 +96,8 @@ export function Board({
 		pieceFits,
 		allBlocks,
 		freeze,
-		winningBlocks
+		winningBlocks,
+		killBlocks
 	};
 
 }
