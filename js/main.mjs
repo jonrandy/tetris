@@ -1,6 +1,7 @@
 
 import { Board, Piece } from './anytris.mjs';
-import { Tetrominos } from'./tetris.mjs';
+import { Tetrominos } from './tetris.mjs';
+import { GameController, KeyboardDriver as Keyboard } from './gamecontroller.mjs';
 
 
 let myBoard = Board();
@@ -14,6 +15,8 @@ let myPiece = createPiece();
 
 
 let b = window.document.getElementById('board');
+
+let controller = GameController(Keyboard);
 
 
 let interval = window.setInterval(() => {
