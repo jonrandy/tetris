@@ -5,10 +5,16 @@ export function GameController(driverFactory) {
 		driver = driverFactory();
 	;
 
-	driver.start(buttonPressed, window.document);
+	driver.start(setButtonState, window.document);
 
-	function buttonPressed(button, state) {
+	function setButtonState(button, state) {
 		_self[button] = state;
+		_self.info[state?'lastOn':'lastOff'] = button;
+		_self.info['buttonsOn'] = Object.values(_self).includes(true);
+	}
+
+	function shutdown() {
+		driver.stop();
 	}
 
 	return _self = {
@@ -20,7 +26,13 @@ export function GameController(driverFactory) {
 		buttonB: false,
 		buttonSelect: false,
 		buttonStart: false,
-		quit: false
+		buttonQuit: false,
+		info: {
+			lastOn: '',
+			lastOff: '',
+			buttonsOn: false
+		},
+		shutdown
 	};
 
 }
@@ -36,31 +48,44 @@ export function KeyboardDriver({
 	buttonB				= 88, // X
 	buttonSelect	= 9,	// Tab
 	buttonStart		= 13,	// Return
-	quit					= 27	// Escape					
+	buttonQuit					= 27	// Escape					
 } = {}) {
 
 	let
 		_self,
-		buttonKeyCodes = { up, down, left, right, buttonA, buttonB, buttonSelect, buttonStart, quit }
+		buttonKeyCodes = { up, down, left, right, buttonA, buttonB, buttonSelect, buttonStart, buttonQuit },
+		keyCodeMap = Object.keys(buttonKeyCodes).reduce((map, key) => {
+			map[buttonKeyCodes[key]] = key;
+			return map;
+		}, {}),
+		documentObj,
+		sendSignal
 	;
 
-	// TODO - code to store a transposed keycodemap here
-	// Object.keys(j).reduce((prev, key)=> {
-	// 	prev[j[key]] = key;
-	// 	return prev;
-	// }, {});
+	console.log(keyCodeMap);
 
-	function start(pressedFunc, docObj) {
-		docObj.addEventListener('keydown', handleKeyDown);
-		docObj.addEventListener('keyup', handleKeyUp);
+	function start(func, docObj) {
+		sendSignal = func;
+		documentObj = docObj;
+		documentObj.addEventListener('keydown', handleKeyDown);
+		documentObj.addEventListener('keyup', handleKeyUp);
 	}
 
-	function handleKeyUp() {
-
+	function stop() {
+		documentObj.removeEventListener('keydown', handleKeyDown);
+		documentObj.removeEventListener('keyup', handleKeyUp);
 	}
 
-	function handleKeyDown() {
-		
+	function handleKeyDown(e) {
+		signalKey(e.keyCode, true);
+	}
+
+	function handleKeyUp(e) {
+		signalKey(e.keyCode, false);
+	}
+
+	function signalKey(keyCode, state) {
+		keyCodeMap[keyCode] && sendSignal(keyCodeMap[keyCode], state);
 	}
 
 

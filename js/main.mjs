@@ -15,6 +15,7 @@ let myPiece = createPiece();
 
 
 let b = window.document.getElementById('board');
+let k = window.document.getElementById('keys');
 
 let controller = GameController(Keyboard);
 
@@ -31,6 +32,22 @@ let interval = window.setInterval(() => {
 		myPiece = createPiece();
 	}
 	draw(myBoard);
+
+	let s = "Up : " + controller.up + "\n";
+	s += "Down : " + controller.down + "\n";
+	s += "Left : " + controller.left + "\n";
+	s += "Right : " + controller.right + "\n";
+	s += "Button A : " + controller.buttonA + "\n";
+	s += "Button B : " + controller.buttonB + "\n";
+	s += "Select : " + controller.buttonSelect + "\n";
+	s += "Start : " + controller.buttonStart + "\n";
+	s += "Quit : " + controller.buttonQuit + "\n";
+	s += "Last On : " + controller.info.lastOn + "\n";
+	s += "Last Off : " + controller.info.lastOff + "\n";
+	s += "Buttons on : " + controller.info.buttonsOn + "\n";
+
+	k.value = s;
+
 }, 5);
 
 
