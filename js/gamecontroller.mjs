@@ -58,22 +58,22 @@ export function KeyboardDriver({
 			map[buttonKeyCodes[key]] = key;
 			return map;
 		}, {}),
-		documentObj,
+		eventEmitter,
 		sendSignal
 	;
 
 	console.log(keyCodeMap);
 
-	function start(func, docObj) {
+	function start(func, emitter) {
 		sendSignal = func;
-		documentObj = docObj;
-		documentObj.addEventListener('keydown', handleKeyDown);
-		documentObj.addEventListener('keyup', handleKeyUp);
+		eventEmitter = emitter;
+		eventEmitter.addEventListener('keydown', handleKeyDown);
+		eventEmitter.addEventListener('keyup', handleKeyUp);
 	}
 
 	function stop() {
-		documentObj.removeEventListener('keydown', handleKeyDown);
-		documentObj.removeEventListener('keyup', handleKeyUp);
+		eventEmitter.removeEventListener('keydown', handleKeyDown);
+		eventEmitter.removeEventListener('keyup', handleKeyUp);
 	}
 
 	function handleKeyDown(e) {
