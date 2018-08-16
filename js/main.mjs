@@ -3,6 +3,15 @@ import { Board, Piece } from './anytris.mjs';
 import { Tetrominos } from './tetris.mjs';
 import { GameController, KeyboardDriver as Keyboard } from './gamecontroller.mjs';
 
+import { Ticker } from './ticker.mjs';
+
+window.ticker = Ticker({
+	onValue: 'Yeah',
+	offValue: 'No',
+	repeatEvery: 1,
+	initialRepeatDelay: 10
+});
+
 
 let myBoard = Board();
 let createPiece = ()=>Piece({
