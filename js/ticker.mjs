@@ -22,7 +22,8 @@ export function Ticker({
 	}
 
 	return Object.freeze({
-		value
+		value,
+		on: value // alt name
 	});
 
 }
