@@ -33,13 +33,13 @@ const GAMELOOP = () => {
 	if (CONTROLLER.info.buttonsOn) {
 		if (gameAction !== CONTROLLER.info.lastOn) {
 			gameAction = CONTROLLER.info.lastOn;
-			gameActionTicker = Ticker(CONTROL_REPEAT_CFG[gameAction]);
+			CONTROL_REPEAT_CFG[gameAction] && (gameActionTicker = Ticker(CONTROL_REPEAT_CFG[gameAction]));
 		}
 	} else {
 		gameAction = gameActionTicker = false;
 	}
 
-	gameAction && gameActionTicker.on() && console.log(gameAction + ' : ' + Math.random())
+	gameActionTicker && gameActionTicker.on() && console.log(gameAction + ' : ' + Math.random())
 
 };
 
