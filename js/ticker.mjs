@@ -1,4 +1,4 @@
-export function Ticker({
+export default function({
 	repeatEvery = 1,
 	initialRepeatDelay = 0,
 	onValue = true,

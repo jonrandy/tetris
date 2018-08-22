@@ -1,11 +1,13 @@
-export function GameController(driverFactory) {
+import Ticker from './ticker.mjs';
+
+
+export function GameController(driver) {
 
 	let
-		_self,
-		driver = driverFactory();
+		_self
 	;
 
-	driver.start(setButtonState, window.document);
+	start();
 
 	function setButtonState(button, state) {
 		_self[button] = state;
@@ -13,7 +15,11 @@ export function GameController(driverFactory) {
 		_self.info['buttonsOn'] = Object.values(_self).includes(true);
 	}
 
-	function shutdown() {
+	function start() {
+		driver.start(setButtonState, window.document);
+	}
+
+	function stop() {
 		driver.stop();
 	}
 
@@ -32,8 +38,38 @@ export function GameController(driverFactory) {
 			lastOff: '',
 			buttonsOn: false
 		},
-		shutdown
+		start,
+		stop
 	};
+
+}
+
+export function SingleActionGameController(driver, repeatConfig) {
+
+	let
+		gameAction,
+		gameActionTicker,
+		gc = GameController(driver)
+	;
+
+	function getAction() {
+		if (gc.info.buttonsOn) {
+			if (gameAction !== gc.info.lastOn) {
+				gameAction = gc.info.lastOn;
+				repeatConfig[gameAction] && (gameActionTicker = Ticker(repeatConfig[gameAction]));
+			}
+		} else {
+			gameAction = gameActionTicker = false;
+		}
+
+		return (gameActionTicker && gameActionTicker.on()) ? gameAction : false;
+	}
+
+	return Object.freeze({
+		start: gc.start,
+		stop: gc.stop,
+		getAction
+	})
 
 }
 
@@ -61,8 +97,6 @@ export function KeyboardDriver({
 		eventEmitter,
 		sendSignal
 	;
-
-	console.log(keyCodeMap);
 
 	function start(func, emitter) {
 		sendSignal = func;

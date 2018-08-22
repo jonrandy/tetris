@@ -1,9 +1,9 @@
 
 import { Board, Piece } from './anytris.mjs';
-import { Tetrominos } from './tetris.mjs';
-import { GameController, KeyboardDriver as Keyboard } from './gamecontroller.mjs';
+import Tetrominos from './tetris.mjs';
+import { SingleActionGameController, KeyboardDriver } from './gamecontroller.mjs';
 
-import { Ticker } from './ticker.mjs';
+import Ticker from './ticker.mjs';
 
 
 const REPEAT = {
@@ -20,40 +20,22 @@ const CONTROL_REPEAT_CFG = {
 	buttonA:	REPEAT.none
 };
 
-const CONTROLLER = GameController(Keyboard);
+const GAME_CONTROLLER = SingleActionGameController( KeyboardDriver(), CONTROL_REPEAT_CFG);
 
 let
 	gameAction,
-	gameActionTicker,
 	gameId
 ;
 
 const GAMELOOP = () => {
 
-	if (CONTROLLER.info.buttonsOn) {
-		if (gameAction !== CONTROLLER.info.lastOn) {
-			gameAction = CONTROLLER.info.lastOn;
-			CONTROL_REPEAT_CFG[gameAction] && (gameActionTicker = Ticker(CONTROL_REPEAT_CFG[gameAction]));
-		}
-	} else {
-		gameAction = gameActionTicker = false;
-	}
-
-	gameActionTicker && gameActionTicker.on() && console.log(gameAction + ' : ' + Math.random())
+	gameAction = GAME_CONTROLLER.getAction();
+	gameAction && console.log(gameAction + ' : ' + Math.random())
 
 };
 
 gameId = window.setInterval(GAMELOOP, 50);
 
-
-
-
-// window.ticker = Ticker({
-// 	onValue: 'Yeah',
-// 	offValue: 'No',
-// 	repeatEvery: 1,
-// 	initialRepeatDelay: 10
-// });
 
 
 // let myBoard = Board();

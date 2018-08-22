@@ -1,4 +1,4 @@
-export const Tetrominos = [
+export default [
 
 	// I
 	{
