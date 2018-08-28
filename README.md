@@ -25,3 +25,19 @@ x------x--x--x--x--x--x--x--x--x--x--
 Use in game - when a new controller press is made, make a new ticker with that controller key's repeat settings
 if no keys pressed - destroy the repeater
 if Ticker value is true, do the action represented by last controller button down
+
+
+-----------------------
+
+newAction = lastkeydown && keyOn(lastKeyDown)
+
+if !newAction 
+
+	gameaction = gamerepeater = false
+
+else if newAction != gameAction
+
+	gameaction = newaction
+	gamerepater = repeaters(gameaction
+
+endif
