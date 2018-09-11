@@ -53,13 +53,14 @@ export function SingleActionGameController(driver, repeatConfig) {
 	;
 
 	function getAction() {
-		if (gc.info.buttonsOn) {
-			if (gameAction !== gc.info.lastOn) {
-				gameAction = gc.info.lastOn;
-				repeatConfig[gameAction] && (gameActionTicker = Ticker(repeatConfig[gameAction]));
-			}
-		} else {
+
+		let newAction = gc[gc.info.lastOn] && gc.info.lastOn;
+
+		if (!newAction) {
 			gameAction = gameActionTicker = false;
+		} else if (newAction !== gameAction) {
+			gameAction = newAction;
+			gameActionTicker = Ticker(repeatConfig[gameAction]);
 		}
 
 		return (gameActionTicker && gameActionTicker.on()) ? gameAction : false;
@@ -84,7 +85,7 @@ export function KeyboardDriver({
 	buttonB				= 88, // X
 	buttonSelect	= 9,	// Tab
 	buttonStart		= 13,	// Return
-	buttonQuit					= 27	// Escape					
+	buttonQuit		= 27	// Escape					
 } = {}) {
 
 	let
