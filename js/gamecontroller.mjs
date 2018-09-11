@@ -44,6 +44,7 @@ export function GameController(driver) {
 
 }
 
+
 export function SingleActionGameController(driver, repeatConfig) {
 
 	let
