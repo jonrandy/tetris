@@ -1,6 +1,6 @@
-export const BlockCheck = (thisBlockType, withBoardBlockType) => !withBoardBlockType ? thisBlockType : false;
+const BlockCheck = (thisBlockType, withBoardBlockType) => !withBoardBlockType ? thisBlockType : false;
 
-export const BlocksInFullRows = (allBlocks) => {
+const BlocksInFullRows = (allBlocks) => {
 	var width = allBlocks[0].length, winners = [];
 	allBlocks.forEach((row, y)=>{
 		if (row.map(x=>x?'x':'').join('').length == width) winners = winners.concat([...Array(width).keys()].map(x=>[x,y]));
@@ -12,17 +12,21 @@ export function Board({
 	width = 10,
 	height = 40,
 	playHeight = 20,
-	initialFill = '',
-	checkBlock = BlockCheck,
+	backgroundFill = '',
+	blockFits = BlockCheck,
 	findWinBlocks = BlocksInFullRows
 } = {}) {
 
 	let
 		_self,
-		blockTypeArr = _makeBlockTypeArr(width, height, initialFill),
-		blockFits = checkBlock,
-		fillWith = initialFill
+		blockTypeArr = []
 	;
+
+	clear();
+
+	function clear() {
+		blockTypeArr = _makeBlockTypeArr(width, height, backgroundFill);
+	}
 
 	function _makeBlockTypeArr(w, h, fill) {
 		return [...Array(h)].map(() => [...Array(w)].map(() => fill))
@@ -38,9 +42,9 @@ export function Board({
 		let blocks = arrTranspose(blockTypeArr);
 		blocksAt.forEach(([x,y]) => {
 			if (drop) {
-				blocks[x] = blocks[x].filter((block, ypos)=>ypos!=y).concat([fillWith]);
+				blocks[x] = blocks[x].filter((block, ypos)=>ypos!=y).concat([backgroundFill]);
 			} else {
-				blocks[x][y] = fillWith;
+				blocks[x][y] = backgroundFill;
 			}
 		});
 		blockTypeArr = arrTranspose(blocks);
@@ -97,7 +101,8 @@ export function Board({
 		allBlocks,
 		freeze,
 		winningBlocks,
-		killBlocks
+		killBlocks,
+		clear
 	};
 
 }

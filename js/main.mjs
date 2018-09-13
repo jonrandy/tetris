@@ -2,6 +2,7 @@
 import { Board, Piece } from './anytris.mjs';
 import Tetrominos from './tetris.mjs';
 import { SingleActionGameController, KeyboardDriver } from './gamecontroller.mjs';
+// import { GameController } from './gamecontroller.mjs';
 
 import Ticker from './ticker.mjs';
 
@@ -30,7 +31,7 @@ let
 const GAMELOOP = () => {
 
 	gameAction = GAME_CONTROLLER.getAction();
-	gameAction && console.log(gameAction + ' : ' + Math.random())
+	gameAction && console.log(gameAction + ' : ' + Math.random());
 
 };
 
@@ -50,6 +51,8 @@ gameId = window.setInterval(GAMELOOP, 50);
 
 // let b = window.document.getElementById('board');
 // let k = window.document.getElementById('keys');
+
+// let Keyboard = KeyboardDriver();
 
 // let controller = GameController(Keyboard);
 
