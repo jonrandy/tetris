@@ -2,31 +2,78 @@
 import { Board, Piece } from './anytris.mjs';
 import Tetrominos from './tetris.mjs';
 import { SingleActionGameController, KeyboardDriver } from './gamecontroller.mjs';
-// import { GameController } from './gamecontroller.mjs';
 
 import Ticker from './ticker.mjs';
 
 
-const REPEAT = {
-	pauseThenSlow:	{ initialRepeatDelay: 10, repeatEvery: 5 },
-	none:						{ repeatEvery: 0 },
-	continous:			{  },
-};
+// Game control setup
 
-const CONTROL_REPEAT_CFG = {
-	left:			REPEAT.pauseThenSlow,
-	right:		REPEAT.pauseThenSlow,
-	up:				REPEAT.none,
-	down:			REPEAT.continous,
-	buttonA:	REPEAT.none
-};
+const
+	REPEATS = {
+		pauseThenSlow:	{ initialRepeatDelay: 10, repeatEvery: 5 },
+		none:						{ repeatEvery: 0 },
+		continous:			{  },
+	},
+	CONTROL_REPEAT_CFG = {
+		left:			REPEATS.pauseThenSlow,
+		right:		REPEATS.pauseThenSlow,
+		up:				REPEATS.none,
+		down:			REPEATS.continous,
+		buttonA:	REPEATS.none
+	},
+	GAME_CONTROLLER = SingleActionGameController( KeyboardDriver(), CONTROL_REPEAT_CFG)
+;
 
-const GAME_CONTROLLER = SingleActionGameController( KeyboardDriver(), CONTROL_REPEAT_CFG);
+
+// Game states
+
+const
+	GS_PASSIVE = Symbol('passive'),
+	GS_ACTIVE = Symbol('active'),
+	GS_PAUSED = Symbol('paused')
+;
+
+
 
 let
 	gameAction,
-	gameId
+	gameState = GS_PASSIVE,
+	board = Board(),
+	piece,
+	nextPieceList
 ;
+
+
+let GAME = (()=>{
+
+	let
+		_self,
+		handlers = {
+
+			GS_PASSIVE: () => {
+
+			},
+
+			GS_PAUSED: () => {
+
+			},
+
+			GS_ACTIVE: () => {
+
+			}
+
+		}
+	;
+
+	function step() {
+
+	}
+
+	return _self = {
+		step
+	};
+
+})();
 
 const GAMELOOP = () => {
 
@@ -35,7 +82,7 @@ const GAMELOOP = () => {
 
 };
 
-gameId = window.setInterval(GAMELOOP, 50);
+const gameId = window.setInterval(GAMELOOP, 50);
 
 
 
