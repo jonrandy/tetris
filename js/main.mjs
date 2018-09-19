@@ -47,14 +47,17 @@ let GAME = ((controller)=>{
 
 		_handlers = {
 
+			// Game not active - waiting for user to initiate game
 			[GS_PASSIVE] () {
 				_action && console.log(_action + ' : ' + Math.random());
 			},
 
+			// Game is active
 			[GS_ACTIVE] () {
 
 			},
 
+			// Game is active, but paused
 			[GS_PAUSED] () {
 
 			}
