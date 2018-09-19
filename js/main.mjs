@@ -15,18 +15,19 @@ const
 		continous:			{  },
 	},
 	CONTROL_REPEAT_CFG = {
-		left:			REPEATS.pauseThenSlow,
-		right:		REPEATS.pauseThenSlow,
-		up:				REPEATS.none,
-		down:			REPEATS.continous,
-		buttonA:	REPEATS.none
+		left:					REPEATS.pauseThenSlow,
+		right:				REPEATS.pauseThenSlow,
+		up:						REPEATS.none,
+		down:					REPEATS.continous,
+		buttonA:			REPEATS.none,
+		buttonSelect:	REPEATS.none,
+		buttonStart:	REPEATS.none
 	},
 	GAME_CONTROLLER = SingleActionGameController( KeyboardDriver(), CONTROL_REPEAT_CFG)
 ;
 
 
 // Game states
-
 const
 	GS_PASSIVE = Symbol('passive'),
 	GS_ACTIVE = Symbol('active'),
@@ -34,52 +35,54 @@ const
 ;
 
 
-
-let
-	gameAction,
-	gameState = GS_PASSIVE,
-	board = Board(),
-	piece,
-	nextPieceList
-;
-
-
-let GAME = (()=>{
+let GAME = ((controller)=>{
 
 	let
-		_self,
-		handlers = {
 
-			GS_PASSIVE: () => {
+		_action,
+		_state = GS_PASSIVE,
+		_board = Board(),
+		_piece,
+		_nextPieces = [],
+
+		_handlers = {
+
+			[GS_PASSIVE] () {
+				_action && console.log(_action + ' : ' + Math.random());
+			},
+
+			[GS_ACTIVE] () {
 
 			},
 
-			GS_PAUSED: () => {
-
-			},
-
-			GS_ACTIVE: () => {
+			[GS_PAUSED] () {
 
 			}
 
 		}
+
 	;
 
 	function step() {
+		_action = controller.getAction();
+		_handlers[_state]();
+	}
+
+	function draw() {
 
 	}
 
-	return _self = {
-		step
+
+	return {
+		step,
+		draw
 	};
 
-})();
+})(GAME_CONTROLLER);
 
 const GAMELOOP = () => {
-
-	gameAction = GAME_CONTROLLER.getAction();
-	gameAction && console.log(gameAction + ' : ' + Math.random());
-
+	GAME.step();
+	GAME.draw();
 };
 
 const gameId = window.setInterval(GAMELOOP, 50);
