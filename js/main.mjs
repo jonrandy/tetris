@@ -1,13 +1,13 @@
 
 import { Board, Piece } from './anytris.mjs';
-import Tetrominos from './tetris.mjs';
+import Tetrominos from './tetrominos.mjs';
+import TetrisHTMLView from './tetrisHTML.mjs';
 import { SingleActionGameController, KeyboardDriver } from './gamecontroller.mjs';
 
 import Ticker from './ticker.mjs';
 
 
 // Game control setup
-
 const
 	REPEATS = {
 		pauseThenSlow:	{ initialRepeatDelay: 10, repeatEvery: 5 },
@@ -26,6 +26,9 @@ const
 	GAME_CONTROLLER = SingleActionGameController( KeyboardDriver(), CONTROL_REPEAT_CFG)
 ;
 
+// Game visualiser
+const VISUALISER = TetrisHTMLView();
+
 
 // Game states
 const
@@ -35,7 +38,7 @@ const
 ;
 
 
-let GAME = ((controller)=>{
+let GAME = ((controller, gameVisualiser)=>{
 
 	let
 
@@ -50,11 +53,12 @@ let GAME = ((controller)=>{
 			// Game not active - waiting for user to initiate game
 			[GS_PASSIVE] () {
 				_action && console.log(_action + ' : ' + Math.random());
+				if (_action=='buttonStart') _state = GS_ACTIVE;
 			},
 
 			// Game is active
 			[GS_ACTIVE] () {
-
+				_action && console.log(_action + ' :INGAME:' + Math.random());
 			},
 
 			// Game is active, but paused
@@ -72,7 +76,7 @@ let GAME = ((controller)=>{
 	}
 
 	function draw() {
-
+		gameVisualiser.update();
 	}
 
 
@@ -81,7 +85,7 @@ let GAME = ((controller)=>{
 		draw
 	};
 
-})(GAME_CONTROLLER);
+})(GAME_CONTROLLER, VISUALISER);
 
 const GAMELOOP = () => {
 	GAME.step();
