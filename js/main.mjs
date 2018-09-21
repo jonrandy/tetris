@@ -1,10 +1,12 @@
 
-import { Board, Piece } from './anytris.mjs';
+import { Board, PieceQueue } from './anytris.mjs';
 import Tetrominos from './tetrominos.mjs';
 import TetrisHTMLView from './tetrisHTML.mjs';
 import { SingleActionGameController, KeyboardDriver } from './gamecontroller.mjs';
 
 import Ticker from './ticker.mjs';
+
+window.queue = PieceQueue({ length: 5, tileSet: Tetrominos });
 
 
 // Game control setup

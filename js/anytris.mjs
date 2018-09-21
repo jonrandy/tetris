@@ -1,5 +1,6 @@
 const BlockCheck = (thisBlockType, withBoardBlockType) => !withBoardBlockType ? thisBlockType : false;
 
+
 const BlocksInFullRows = (allBlocks) => {
 	var width = allBlocks[0].length, winners = [];
 	allBlocks.forEach((row, y)=>{
@@ -7,6 +8,7 @@ const BlocksInFullRows = (allBlocks) => {
 	});
 	return winners;
 };
+
 
 export function Board({
 	width = 10,
@@ -37,7 +39,6 @@ export function Board({
 	}
 
 	function killBlocks(blocksAt, drop = true) {
-		if (!Array.isArray(blocksAt)) blocks = [blocksAt];
 		blocksAt.sort(([x1,y1], [x2,y2])=>y2-y1);
 		let blocks = arrTranspose(blockTypeArr);
 		blocksAt.forEach(([x,y]) => {
@@ -171,3 +172,43 @@ export function Piece({
 }
 
 
+export function PieceQueue({
+	intialPos = [0,0],
+	tileSet,
+	length = 1,
+	rotate = false
+}){
+
+	const _randPiece = ()=>RandomPiece({tileSet, intialPos, rotate});
+	let pieces = Array(length).fill().map(_randPiece);
+
+	function grabNext() {
+		pieces.push(_randPiece());
+		return  pieces.shift();
+	}
+
+	return Object.freeze({
+		grabNext,
+		pieces
+	});
+
+}
+
+
+const randInt = x=>Math.random()*x|0;
+
+
+export function RandomPiece({
+	tileSet,
+	pos:[x,y] = [0,0],
+	rotate = true
+}){
+
+	let
+		tile = tileSet[randInt(tileSet.length)],
+		tileState = rotate ? randInt(tile.states.length) : 0
+	;
+
+	return Piece({ x, y, tile, tileState });
+
+}
