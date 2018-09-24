@@ -2,8 +2,7 @@
 import { Board, PieceQueue } from './anytris.mjs';
 import Tetrominos from './tetrominos.mjs';
 import TetrisHTMLView from './tetrisHTML.mjs';
-import { SingleActionGameController, KeyboardDriver } from './gamecontroller.mjs';
-
+import { GC, SingleActionGameController, KeyboardDriver } from './gamecontroller.mjs';
 import Ticker from './ticker.mjs';
 
 window.queue = PieceQueue({ length: 5, tileSet: Tetrominos });
@@ -17,20 +16,19 @@ const
 		continous:			{  },
 	},
 	CONTROL_REPEAT_CFG = {
-		left:					REPEATS.pauseThenSlow,
-		right:				REPEATS.pauseThenSlow,
-		up:						REPEATS.none,
-		down:					REPEATS.continous,
-		buttonA:			REPEATS.none,
-		buttonSelect:	REPEATS.none,
-		buttonStart:	REPEATS.none
+		[GC.LEFT]:					REPEATS.pauseThenSlow,
+		[GC.RIGHT]:					REPEATS.pauseThenSlow,
+		[GC.UP]:						REPEATS.none,
+		[GC.DOWN]:					REPEATS.continous,
+		[GC.BUTTON_A]:			REPEATS.none,
+		[GC.BUTTON_SELECT]:	REPEATS.none,
+		[GC.BUTTON_START]:	REPEATS.none
 	},
 	GAME_CONTROLLER = SingleActionGameController( KeyboardDriver(), CONTROL_REPEAT_CFG)
 ;
 
 // Game visualiser
 const VISUALISER = TetrisHTMLView();
-
 
 // Game states
 const
@@ -54,7 +52,7 @@ let GAME = ((controller, gameVisualiser)=>{
 
 			// Game not active - waiting for user to initiate game
 			[GS_PASSIVE] () {
-				_action && console.log(_action + ' : ' + Math.random());
+				_action && console.log(_action, Math.random());
 				if (_action=='buttonStart') _state = GS_ACTIVE;
 			},
 

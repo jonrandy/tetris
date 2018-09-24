@@ -1,5 +1,30 @@
 import Ticker from './ticker.mjs';
 
+const	
+	UP = 						Symbol('UP'),
+	DOWN = 					Symbol('DOWN'),
+	LEFT = 					Symbol('LEFT'),
+	RIGHT = 				Symbol('RIGHT'),
+	BUTTON_A = 			Symbol('BUTTON_A'),
+	BUTTON_B = 			Symbol('BUTTON_B'),
+	BUTTON_SELECT =	Symbol('BUTTON_SELECT'),
+	BUTTON_START = 	Symbol('BUTTON_START'),
+	BUTTON_QUIT = 	Symbol('BUTTON_QUIT')
+;
+
+
+export const GC = {
+	UP,
+	DOWN,
+	LEFT,
+	RIGHT,
+	BUTTON_A,
+	BUTTON_B,
+	BUTTON_SELECT,
+	BUTTON_START,
+	BUTTON_QUIT
+};
+
 
 export function GameController(driver) {
 
@@ -24,15 +49,15 @@ export function GameController(driver) {
 	}
 
 	return _self = {
-		up: false,
-		down: false,
-		left: false,
-		right: false,
-		buttonA: false,
-		buttonB: false,
-		buttonSelect: false,
-		buttonStart: false,
-		buttonQuit: false,
+		[UP]: false,
+		[DOWN]: false,
+		[LEFT]: false,
+		[RIGHT]: false,
+		[BUTTON_A]: false,
+		[BUTTON_B]: false,
+		[BUTTON_SELECT]: false,
+		[BUTTON_START]: false,
+		[BUTTON_QUIT]: false,
 		info: {
 			lastOn: '',
 			lastOff: '',
@@ -91,11 +116,17 @@ export function KeyboardDriver({
 
 	let
 		_self,
-		buttonKeyCodes = { up, down, left, right, buttonA, buttonB, buttonSelect, buttonStart, buttonQuit },
-		keyCodeMap = Object.keys(buttonKeyCodes).reduce((map, key) => {
-			map[buttonKeyCodes[key]] = key;
-			return map;
-		}, {}),
+		keyCodeMap = {
+			[up]: UP,
+			[down]: DOWN,
+			[left]: LEFT,
+			[right]: RIGHT,
+			[buttonA]: BUTTON_A,
+			[buttonB]: BUTTON_B,
+			[buttonSelect]: BUTTON_SELECT,
+			[buttonStart]: BUTTON_START,
+			[buttonQuit]: BUTTON_QUIT
+		},
 		eventEmitter,
 		sendSignal
 	;
