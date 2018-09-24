@@ -1,41 +1,19 @@
 
+import { Config as CFG, PlayStates as PS } from './config.mjs';
 import { Board, PieceQueue } from './anytris.mjs';
 import Tetrominos from './tetrominos.mjs';
 import TetrisHTMLView from './tetrisHTML.mjs';
 import { GC, SingleActionGameController, KeyboardDriver } from './gamecontroller.mjs';
 import Ticker from './ticker.mjs';
 
-window.queue = PieceQueue({ length: 5, tileSet: Tetrominos });
+window.queue = PieceQueue({ length: 5, tileSet: Tetrominos, initialPos: [3,23] });
 
 
-// Game control setup
 const
-	REPEATS = {
-		pauseThenSlow:	{ initialRepeatDelay: 10, repeatEvery: 5 },
-		none:						{ repeatEvery: 0 },
-		continous:			{  },
-	},
-	CONTROL_REPEAT_CFG = {
-		[GC.LEFT]:					REPEATS.pauseThenSlow,
-		[GC.RIGHT]:					REPEATS.pauseThenSlow,
-		[GC.UP]:						REPEATS.none,
-		[GC.DOWN]:					REPEATS.continous,
-		[GC.BUTTON_A]:			REPEATS.none,
-		[GC.BUTTON_SELECT]:	REPEATS.none,
-		[GC.BUTTON_START]:	REPEATS.none
-	},
-	GAME_CONTROLLER = SingleActionGameController( KeyboardDriver(), CONTROL_REPEAT_CFG)
+	GAME_CONTROLLER = SingleActionGameController( KeyboardDriver(), CFG.CONTROL_REPEAT),
+	VISUALISER = TetrisHTMLView({ document })
 ;
 
-// Game visualiser
-const VISUALISER = TetrisHTMLView();
-
-// Game states
-const
-	GS_PASSIVE = Symbol('passive'),
-	GS_ACTIVE = Symbol('active'),
-	GS_PAUSED = Symbol('paused')
-;
 
 
 let GAME = ((controller, gameVisualiser)=>{
@@ -43,30 +21,43 @@ let GAME = ((controller, gameVisualiser)=>{
 	let
 
 		_action,
-		_state = GS_PASSIVE,
+		_score,
+		_state = PS.PASSIVE,
 		_board = Board(),
 		_piece,
-		_nextPieces = [],
+		_nextPieces,
 
 		_handlers = {
 
 			// Game not active - waiting for user to initiate game
-			[GS_PASSIVE] () {
-				_action && console.log(_action, Math.random());
-				if (_action=='buttonStart') _state = GS_ACTIVE;
+			[PS.PASSIVE] () {
+				_action && console.log(_action, ':PASSIVE:', Math.random());
+				if (_action==GC.BUTTON_A) _start();
 			},
 
 			// Game is active
-			[GS_ACTIVE] () {
-				_action && console.log(_action + ' :INGAME:' + Math.random());
+			[PS.ACTIVE] () {
+				_action && console.log(_action, ':INGAME:', Math.random());
 			},
 
 			// Game is active, but paused
-			[GS_PAUSED] () {
+			[PS.PAUSED] () {
 
 			}
 
+		},
+
+		_start = ()=>{
+			_reset();
+			_state = PS.ACTIVE;
+			_score = 0;
+		},
+
+		_reset = ()=>{
+			_board.clear();
 		}
+
+
 
 	;
 

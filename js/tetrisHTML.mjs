@@ -1,5 +1,7 @@
 export default function({
-	skin = 'default'			
+	skin = 'default',
+	document,
+	debugMode = false
 } = {}) {
 
 	function update() {
