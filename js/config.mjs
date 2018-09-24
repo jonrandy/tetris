@@ -17,7 +17,9 @@ export const Config = {
 		[GC.BUTTON_A]:			REPEATS.none,
 		[GC.BUTTON_SELECT]:	REPEATS.none,
 		[GC.BUTTON_START]:	REPEATS.none
-	}
+	},
+
+	PIECE_STARTPOS: [3, 23]
 
 };
 

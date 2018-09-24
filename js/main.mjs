@@ -6,8 +6,6 @@ import TetrisHTMLView from './tetrisHTML.mjs';
 import { GC, SingleActionGameController, KeyboardDriver } from './gamecontroller.mjs';
 import Ticker from './ticker.mjs';
 
-window.queue = PieceQueue({ length: 5, tileSet: Tetrominos, initialPos: [3,23] });
-
 
 const
 	GAME_CONTROLLER = SingleActionGameController( KeyboardDriver(), CFG.CONTROL_REPEAT),
@@ -25,6 +23,7 @@ let GAME = ((controller, gameVisualiser)=>{
 		_state = PS.PASSIVE,
 		_board = Board(),
 		_piece,
+		_level,
 		_nextPieces,
 
 		_handlers = {
@@ -50,11 +49,14 @@ let GAME = ((controller, gameVisualiser)=>{
 		_start = ()=>{
 			_reset();
 			_state = PS.ACTIVE;
-			_score = 0;
 		},
 
 		_reset = ()=>{
 			_board.clear();
+			_score = 0;
+			_piece = undefined;
+			_nextPieces = PieceQueue({ tileSet: Tetrominos, initialPos: CFG.PIECE_STARTPOS });
+			_level = 1;
 		}
 
 
@@ -67,7 +69,14 @@ let GAME = ((controller, gameVisualiser)=>{
 	}
 
 	function draw() {
-		gameVisualiser.update();
+		gameVisualiser.update({
+			score: _score,
+			state: _state,
+			board: _board,
+			piece: _piece,
+			nextPieces: _nextPieces,
+			level: _level
+		});
 	}
 
 
