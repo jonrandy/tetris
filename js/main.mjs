@@ -1,6 +1,6 @@
 
-import { Config as CFG, PlayStates as PS } from './config.mjs';
-import { Board, PieceQueue } from './anytris.mjs';
+import CFG from './config.mjs';
+import { Board, PieceQueue, PlayStates as PS } from './anytris.mjs';
 import Tetrominos from './tetrominos.mjs';
 import TetrisHTMLView from './tetrisHTML.mjs';
 import { GC, SingleActionGameController, KeyboardDriver } from './gamecontroller.mjs';
@@ -8,8 +8,8 @@ import Ticker from './ticker.mjs';
 
 
 const
-	GAME_CONTROLLER = SingleActionGameController( KeyboardDriver(), CFG.CONTROL_REPEAT),
-	VISUALISER = TetrisHTMLView({ document })
+	GAME_CONTROLLER = SingleActionGameController( KeyboardDriver(CFG.KEYBOARD_CONTROLS), CFG.CONTROL_REPEAT),
+	VISUALISER = TetrisHTMLView({ document, debugMode: true })
 ;
 
 
@@ -25,6 +25,7 @@ let GAME = ((controller, gameVisualiser)=>{
 		_piece,
 		_level,
 		_nextPieces,
+		_dropTicker,
 
 		_handlers = {
 
@@ -57,7 +58,19 @@ let GAME = ((controller, gameVisualiser)=>{
 			_piece = undefined;
 			_nextPieces = PieceQueue({ tileSet: Tetrominos, initialPos: CFG.PIECE_STARTPOS });
 			_level = 1;
+			_dropTicker = _makeDropTicker(_level);
+		},
+
+		_makeDropTicker= (level)=>{
+			const
+				loops = 22 - level*2,
+				t = Ticker({ repeatEvery: loops })
+			;
+			t.value(); // move past initial tick
+			return t;
 		}
+
+
 
 
 
@@ -75,7 +88,8 @@ let GAME = ((controller, gameVisualiser)=>{
 			board: _board,
 			piece: _piece,
 			nextPieces: _nextPieces,
-			level: _level
+			level: _level,
+			action: _action
 		});
 	}
 

@@ -7,9 +7,9 @@ const REPEATS = {
 };
 
 
-export const Config = {
+export default {
 
-	CONTROL_REPEAT : {
+	CONTROL_REPEAT: {
 		[GC.LEFT]:					REPEATS.pauseThenSlow,
 		[GC.RIGHT]:					REPEATS.pauseThenSlow,
 		[GC.UP]:						REPEATS.none,
@@ -19,14 +19,21 @@ export const Config = {
 		[GC.BUTTON_START]:	REPEATS.none
 	},
 
+	KEYBOARD_CONTROLS : {
+		up:						 38,	// Up arrow
+		down:					 40,	// Down arrow
+		left:					 37,	// Left arrow
+		right:				 39,	// Right arrow
+		buttonA:			 90,	// Z
+		buttonB:			 88,	// X
+		buttonSelect:	 9,		// Tab
+		buttonStart:	 13,	// Return
+		buttonQuit:		 27		// Escape					
+	},
+
 	PIECE_STARTPOS: [3, 23]
 
 };
 
 
-// Game states
-export const PlayStates = {
-	PASSIVE: Symbol('passive'),
-	ACTIVE: Symbol('active'),
-	PAUSED: Symbol('paused')
-};
+

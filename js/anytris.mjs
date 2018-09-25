@@ -1,3 +1,11 @@
+// Game states for any tetris-like game
+export const PlayStates = {
+	PASSIVE: Symbol('passive'),
+	ACTIVE: Symbol('active'),
+	PAUSED: Symbol('paused')
+};
+
+
 const BlockCheck = (thisBlockType, withBoardBlockType) => !withBoardBlockType ? thisBlockType : false;
 
 

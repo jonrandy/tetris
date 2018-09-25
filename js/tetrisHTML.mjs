@@ -4,7 +4,16 @@ export default function({
 	debugMode = false
 } = {}) {
 
-	function update() {
+	function update({
+		score,
+		state,
+		board,
+		piece,
+		nextPieces,
+		level
+	}) {
+
+		
 
 	}
 
