@@ -18,47 +18,56 @@ let GAME = ((controller, gameVisualiser)=>{
 
 	let
 
-		_action,
-		_score,
-		_state = PS.PASSIVE,
-		_board = Board(),
-		_piece,
-		_level,
-		_nextPieces,
+		action,
+		score,
+		state = PS.PASSIVE,
+		board = Board(),
+		piece,
+		level,
+		nextPieces,
 		_dropTicker,
 
 		_handlers = {
 
 			// Game not active - waiting for user to initiate game
 			[PS.PASSIVE] () {
-				_action && console.log(_action, ':PASSIVE:', Math.random());
-				if (_action==GC.BUTTON_A) _start();
+				if (action==GC.BUTTON_A) _start();
 			},
 
 			// Game is active
 			[PS.ACTIVE] () {
-				_action && console.log(_action, ':INGAME:', Math.random());
+				if (action==GC.BUTTON_SELECT) _togglePause(true);
+				if (action==GC.BUTTON_QUIT) _quit();
 			},
 
 			// Game is active, but paused
 			[PS.PAUSED] () {
-
+				if (action==GC.BUTTON_SELECT) _togglePause(false);
+				if (action==GC.BUTTON_QUIT) _quit();
 			}
 
 		},
 
 		_start = ()=>{
 			_reset();
-			_state = PS.ACTIVE;
+			state = PS.ACTIVE;
+		},
+
+		_togglePause = (paused)=>{
+			state = paused ? PS.PAUSED : PS.ACTIVE;
+		},
+
+		_quit = ()=>{
+			state = PS.PASSIVE;
 		},
 
 		_reset = ()=>{
-			_board.clear();
-			_score = 0;
-			_piece = undefined;
-			_nextPieces = PieceQueue({ tileSet: Tetrominos, initialPos: CFG.PIECE_STARTPOS });
-			_level = 1;
-			_dropTicker = _makeDropTicker(_level);
+			board.clear();
+			score = 0;
+			piece = undefined;
+			nextPieces = PieceQueue({ tileSet: Tetrominos, initialPos: CFG.PIECE_STARTPOS });
+			level = 1;
+			_dropTicker = _makeDropTicker(level);
 		},
 
 		_makeDropTicker= (level)=>{
@@ -77,19 +86,19 @@ let GAME = ((controller, gameVisualiser)=>{
 	;
 
 	function step() {
-		_action = controller.getAction();
-		_handlers[_state]();
+		action = controller.getAction();
+		_handlers[state]();
 	}
 
 	function draw() {
 		gameVisualiser.update({
-			score: _score,
-			state: _state,
-			board: _board,
-			piece: _piece,
-			nextPieces: _nextPieces,
-			level: _level,
-			action: _action
+			score,
+			state,
+			board,
+			piece,
+			nextPieces,
+			level,
+			action
 		});
 	}
 

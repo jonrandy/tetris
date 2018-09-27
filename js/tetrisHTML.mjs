@@ -1,3 +1,5 @@
+import { PlayStates as PS } from './anytris.mjs';
+
 export default function({
 	skin = 'default',
 	document,
@@ -10,10 +12,11 @@ export default function({
 		board,
 		piece,
 		nextPieces,
-		level
+		level,
+		action
 	}) {
 
-		
+		action && console.log(action, state, Math.random());
 
 	}
 
