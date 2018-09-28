@@ -111,8 +111,8 @@ let GAME = ((controller, gameVisualiser)=>{
 })(GAME_CONTROLLER, VISUALISER);
 
 const GAMELOOP = () => {
-	GAME.step();
 	GAME.draw();
+	GAME.step();
 };
 
 const gameId = window.setInterval(GAMELOOP, 50);
