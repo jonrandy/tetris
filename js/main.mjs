@@ -46,44 +46,46 @@ let GAME = ((controller, gameVisualiser)=>{
 				if (action==GC.BUTTON_QUIT) _quit();
 			}
 
-		},
-
-		_start = ()=>{
-			_reset();
-			state = PS.ACTIVE;
-		},
-
-		_togglePause = (paused)=>{
-			state = paused ? PS.PAUSED : PS.ACTIVE;
-		},
-
-		_quit = ()=>{
-			state = PS.PASSIVE;
-		},
-
-		_reset = ()=>{
-			board.clear();
-			score = 0;
-			piece = undefined;
-			nextPieces = PieceQueue({ tileSet: Tetrominos, initialPos: CFG.PIECE_STARTPOS });
-			level = 1;
-			_dropTicker = _makeDropTicker(level);
-		},
-
-		_makeDropTicker= (level)=>{
-			const
-				loops = 22 - level*2,
-				t = Ticker({ repeatEvery: loops })
-			;
-			t.value(); // move past initial tick
-			return t;
 		}
 
 
 
-
-
 	;
+
+	function _start() {
+		_reset();
+		state = PS.ACTIVE;
+	}
+
+	function _togglePause(paused) {
+		state = paused ? PS.PAUSED : PS.ACTIVE;
+	}
+
+	function _quit() {
+		state = PS.PASSIVE;
+	}
+
+	function _reset() {
+		board.clear();
+		score = 0;
+		piece = undefined;
+		nextPieces = PieceQueue({ tileSet: Tetrominos, initialPos: CFG.PIECE_STARTPOS });
+		_setLevel(1);
+	}
+
+	function _setLevel(l) {
+		level = l;
+		_dropTicker = _makeDropTicker(level);
+	}
+
+	function _makeDropTicker(level) {
+		const
+			loops = 22 - level*2,
+			t = Ticker({ repeatEvery: loops })
+		;
+		t.value(); // move past initial tick
+		return t;
+	}
 
 	function step() {
 		action = controller.getAction();
