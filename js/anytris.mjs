@@ -10,7 +10,7 @@ const BlockCheck = (thisBlockType, withBoardBlockType) => !withBoardBlockType ? 
 
 
 const BlocksInFullRows = (allBlocks) => {
-	var width = allBlocks[0].length, winners = [];
+	let width = allBlocks[0].length, winners = [];
 	allBlocks.forEach((row, y)=>{
 		if (row.map(x=>x?'x':'').join('').length == width) winners = winners.concat([...Array(width).keys()].map(x=>[x,y]));
 	});
