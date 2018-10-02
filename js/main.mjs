@@ -38,6 +38,7 @@ let GAME = ((controller, gameVisualiser)=>{
 			[PS.ACTIVE] () {
 				if (action==GC.BUTTON_SELECT) _togglePause(true);
 				if (action==GC.BUTTON_QUIT) _quit();
+				if (action==GC.UP) piece.rotate();
 			},
 
 			// Game is active, but paused
@@ -68,8 +69,8 @@ let GAME = ((controller, gameVisualiser)=>{
 	function _reset() {
 		board.clear();
 		score = 0;
-		piece = undefined;
 		nextPieces = PieceQueue({ tileSet: Tetrominos, initialPos: CFG.PIECE_STARTPOS });
+		piece = nextPieces.grabNext();
 		_setLevel(1);
 	}
 
@@ -130,15 +131,6 @@ const gameId = window.setInterval(GAMELOOP, 50);
 // let myPiece = createPiece();
 
 
-
-// let b = window.document.getElementById('board');
-// let k = window.document.getElementById('keys');
-
-// let Keyboard = KeyboardDriver();
-
-// let controller = GameController(Keyboard);
-
-
 // let interval = window.setInterval(() => {
 // 	myPiece.moveRel(0,-1);
 // 	if (!myBoard.pieceFits(myPiece)) {
@@ -170,7 +162,3 @@ const gameId = window.setInterval(GAMELOOP, 50);
 // }, 5);
 
 
-// function draw(board) {
-// 	let blocks = board.allBlocks({ activePieces: [myPiece], cropAtPlayHeight:true });
-// 	b.value = blocks.reverse().map( (row,i) => '     '+row.map( (col) => col?'X':'.' ).join('')).join("\n");
-// }

@@ -181,13 +181,13 @@ export function Piece({
 
 
 export function PieceQueue({
-	intialPos = [0,0],
+	initialPos = [0,0],
 	tileSet,
 	length = 1,
 	rotate = false
 }){
 
-	const _randPiece = ()=>RandomPiece({tileSet, intialPos, rotate});
+	const _randPiece = ()=>RandomPiece({tileSet, pos: initialPos, rotate});
 	let pieces = Array(length).fill().map(_randPiece);
 
 	function grabNext() {
