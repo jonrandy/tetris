@@ -31,7 +31,7 @@ let GAME = ((controller, gameVisualiser)=>{
 
 			// Game not active - waiting for user to initiate game
 			[PS.PASSIVE] () {
-				if (action==GC.BUTTON_A) _start();
+				if (action==GC.BUTTON_START) _start();
 			},
 
 			// Game is active
