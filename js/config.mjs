@@ -32,7 +32,7 @@ export default {
 		buttonQuit:		 27		// Escape					
 	},
 
-	PIECE_STARTPOS: [3, 10] // ,23
+	PIECE_STARTPOS: [3, 23] // ,23
 
 };
 
