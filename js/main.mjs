@@ -50,6 +50,11 @@ let GAME = ((controller, gameVisualiser)=>{
 
 				_fellOrDropped = false;
 
+				if (!piece) {
+					piece = nextPieces.grabNext();
+					if (!board.pieceFits(piece)) return _gameOver();
+				}
+
 				if (action==GC.BUTTON_SELECT) return _togglePause(true);
 				if (action==GC.BUTTON_QUIT) return _quit();
 
@@ -63,7 +68,7 @@ let GAME = ((controller, gameVisualiser)=>{
 					piece.undo();
 					if (_fellOrDropped) {
 						board.freeze([piece]);
-						piece = nextPieces.grabNext();
+						piece = false;
 					}
 				}
 
@@ -94,11 +99,16 @@ let GAME = ((controller, gameVisualiser)=>{
 		state = PS.PASSIVE;
 	}
 
+	function _gameOver() {
+		alert('Game over');
+		state = PS.PASSIVE;
+	}
+
 	function _reset() {
 		board.clear();
 		score = 0;
 		nextPieces = PieceQueue({ tileSet: Tetrominos, initialPos: CFG.PIECE_STARTPOS });
-		piece = nextPieces.grabNext();
+		piece = false;
 		_setLevel(1);
 	}
 

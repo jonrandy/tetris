@@ -13,7 +13,7 @@ export default function({
 	;
 
 	function _drawBoard(board, livePiece, target) {
-		let blocks = board.allBlocks({ activePieces: [livePiece], cropAtPlayHeight:true });
+		let blocks = board.allBlocks({ activePieces: livePiece && [livePiece], cropAtPlayHeight:true });
 		target.value = blocks.reverse().map( row => '     '+row.map( col => col?'X':'.' ).join('')).join("\n");
 	}
 
