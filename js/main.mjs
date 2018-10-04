@@ -36,13 +36,26 @@ let GAME = ((controller, gameVisualiser)=>{
 
 			// Game is active
 			[PS.ACTIVE] () {
+				let dropped;
 				if (action==GC.BUTTON_SELECT) _togglePause(true);
 				if (action==GC.BUTTON_QUIT) _quit();
-				if (action==GC.UP) piece.rotate();
-				if (action==GC.RIGHT) piece.moveRel(1,0);
-				if (action==GC.LEFT) piece.moveRel(-1,0);
-				if (action==GC.DOWN) piece.moveRel(0,-1);
-				if (!board.pieceFits(piece)) piece.undo();
+
+				if (_dropTicker.value()) {
+					piece.moveRel(0,-1);
+					dropped = true;
+				} else {
+					if (action==GC.UP) piece.rotate();
+					if (action==GC.RIGHT) piece.moveRel(1,0);
+					if (action==GC.LEFT) piece.moveRel(-1,0);
+					if (action==GC.DOWN) piece.moveRel(0,-1);
+				}
+				if (!board.pieceFits(piece)) {
+					piece.undo();
+					if (dropped) {
+						board.freeze([piece]);
+						piece = nextPieces.grabNext();
+					}
+				}
 			},
 
 			// Game is active, but paused

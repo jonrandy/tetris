@@ -27,7 +27,7 @@ export default function({
 		action
 	}) {
 
-		action && console.log(action, state, Math.random());
+		// action && console.log(action, state, Math.random());
 		if (state==PS.ACTIVE) _drawBoard(board, piece, gameArea);
 
 	}
