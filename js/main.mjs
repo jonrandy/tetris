@@ -25,9 +25,20 @@ let GAME = ((controller, gameVisualiser)=>{
 		piece,
 		level,
 		nextPieces,
+		_fellOrDropped,
 		_dropTicker,
+		_moveDown = _movePiece(0, -1),
 
-		_handlers = {
+		_moveActionHandlers = {
+			[GC.UP]: _rotate,
+			[GC.BUTTON_A]: _rotate,
+			[GC.BUTTON_B]: _drop,
+			[GC.LEFT]: _movePiece(-1,0),
+			[GC.RIGHT]: _movePiece(1,0),
+			[GC.DOWN]: _moveDown
+		},
+
+		_stateHandlers = {
 
 			// Game not active - waiting for user to initiate game
 			[PS.PASSIVE] () {
@@ -36,26 +47,26 @@ let GAME = ((controller, gameVisualiser)=>{
 
 			// Game is active
 			[PS.ACTIVE] () {
-				let dropped;
-				if (action==GC.BUTTON_SELECT) _togglePause(true);
-				if (action==GC.BUTTON_QUIT) _quit();
+
+				_fellOrDropped = false;
+
+				if (action==GC.BUTTON_SELECT) return _togglePause(true);
+				if (action==GC.BUTTON_QUIT) return _quit();
 
 				if (_dropTicker.value()) {
-					piece.moveRel(0,-1);
-					dropped = true;
+					_fellOrDropped = _moveDown();
 				} else {
-					if (action==GC.UP) piece.rotate();
-					if (action==GC.RIGHT) piece.moveRel(1,0);
-					if (action==GC.LEFT) piece.moveRel(-1,0);
-					if (action==GC.DOWN) piece.moveRel(0,-1);
+					_handleMove(action);
 				}
+
 				if (!board.pieceFits(piece)) {
 					piece.undo();
-					if (dropped) {
+					if (_fellOrDropped) {
 						board.freeze([piece]);
 						piece = nextPieces.grabNext();
 					}
 				}
+
 			},
 
 			// Game is active, but paused
@@ -105,9 +116,29 @@ let GAME = ((controller, gameVisualiser)=>{
 		return t;
 	}
 
+	function _handleMove(act) {
+		_moveActionHandlers[act] && _moveActionHandlers[act]();
+	}
+
+	function _movePiece(dx, dy) {
+		return ()=>{
+			piece.moveRel(dx,dy);
+			return true;
+		};
+	}
+
+	function _rotate() {
+		piece.rotate();
+	}
+
+	function _drop() {
+		while (board.pieceFits(piece)) _moveDown();
+		_fellOrDropped = true;
+	}
+
 	function step() {
 		action = controller.getAction();
-		_handlers[state]();
+		_stateHandlers[state]();
 	}
 
 	function draw() {

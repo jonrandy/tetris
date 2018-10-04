@@ -15,6 +15,7 @@ export default {
 		[GC.UP]:						REPEATS.none,
 		[GC.DOWN]:					REPEATS.continous,
 		[GC.BUTTON_A]:			REPEATS.none,
+		[GC.BUTTON_B]:			REPEATS.none,
 		[GC.BUTTON_SELECT]:	REPEATS.none,
 		[GC.BUTTON_START]:	REPEATS.none,
 		[GC.BUTTON_QUIT]:		REPEATS.none
