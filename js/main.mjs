@@ -13,6 +13,7 @@ const
 ;
 
 
+
 let GAME = ((controller, gameVisualiser)=>{
 
 	let
@@ -27,6 +28,7 @@ let GAME = ((controller, gameVisualiser)=>{
 		_fellOrDropped,
 		_dropTicker,
 		_moveDown = _movePiece(0, -1),
+		_winners,
 
 		_moveActionHandlers = {
 			[GC.UP]: _rotate,
@@ -48,6 +50,9 @@ let GAME = ((controller, gameVisualiser)=>{
 			[PS.ACTIVE] () {
 
 				_fellOrDropped = false;
+
+				_winners = board.winningBlocks();
+				_winners.length && board.killBlocks(_winners);
 
 				if (!piece) {
 					piece = nextPieces.grabNext();
@@ -176,6 +181,3 @@ const GAMELOOP = () => {
 };
 
 const gameId = window.setInterval(GAMELOOP, 50);
-
-
-
