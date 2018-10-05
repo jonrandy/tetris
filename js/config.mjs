@@ -1,7 +1,7 @@
 import { GC } from './gamecontroller.mjs';
 
 const REPEATS = {
-	pauseThenSlow:	{ initialRepeatDelay: 10, repeatEvery: 5 },
+	pauseThenSlow:	{ initialRepeatDelay: 6, repeatEvery: 2 },
 	none:						{ repeatEvery: 0 },
 	continous:			{  },
 };
