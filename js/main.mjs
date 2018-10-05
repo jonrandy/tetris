@@ -131,6 +131,7 @@ let GAME = ((controller, gameVisualiser)=>{
 	}
 
 	function _handleMove(act) {
+		if ((act==GC.BUTTON_B||act==GC.DOWN) && _fellOrDropped) return;
 		_moveActionHandlers[act] && _moveActionHandlers[act]();
 	}
 
