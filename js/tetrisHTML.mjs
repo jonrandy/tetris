@@ -12,6 +12,10 @@ export default function({
 		debugOutput = $('#debug')[0]
 	;
 
+	let
+		_score
+	;
+
 	function _drawBoard(board, livePiece, target) {
 		let blocks = board.allBlocks({ activePieces: livePiece && [livePiece], cropAtPlayHeight:true });
 		target.value = blocks.reverse().map( row => '     '+row.map( col => col?'X':'.' ).join('')).join("\n");
@@ -29,6 +33,11 @@ export default function({
 
 		// action && console.log(action, state, Math.random());
 		if (state==PS.ACTIVE) _drawBoard(board, piece, gameArea);
+
+		if (score!=_score) {
+			debugOutput.value = "Score: "+score;
+			_score = score;
+		}
 
 	}
 

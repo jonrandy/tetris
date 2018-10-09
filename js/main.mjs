@@ -52,7 +52,10 @@ let GAME = ((controller, gameVisualiser)=>{
 				_fellOrDropped = false;
 
 				_winners = board.winningBlocks();
-				_winners.length && board.killBlocks(_winners);
+				if (_winners.length) {
+					board.killBlocks(_winners);
+					score += _winners.length / board.width;
+				}
 
 				if (!piece) {
 					piece = nextPieces.grabNext();
