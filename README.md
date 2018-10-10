@@ -41,3 +41,6 @@ else if newAction != gameAction
 	gamerepater = repeaters(gameaction
 
 endif
+
+
+https://codepen.io/olam/pen/zcqea - css pulsing (speed indicator)
