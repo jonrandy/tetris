@@ -55,6 +55,7 @@ let GAME = ((controller, gameVisualiser)=>{
 				if (_winners.length) {
 					board.killBlocks(_winners);
 					score += _winners.length / board.width;
+					-_setLevel(1+(score/10)|0)
 				}
 
 				if (!piece) {
@@ -120,8 +121,8 @@ let GAME = ((controller, gameVisualiser)=>{
 	}
 
 	function _setLevel(l) {
+		if (level!==l) _dropTicker = _makeDropTicker(l);
 		level = l;
-		_dropTicker = _makeDropTicker(level);
 	}
 
 	function _makeDropTicker(level) {

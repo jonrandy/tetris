@@ -35,7 +35,7 @@ export default function({
 		if (state==PS.ACTIVE) _drawBoard(board, piece, gameArea);
 
 		if (score!=_score) {
-			debugOutput.value = "Score: "+score;
+			debugOutput.value = "Score: "+score+"\nLevel: "+level;
 			_score = score;
 		}
 
