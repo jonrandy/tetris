@@ -127,7 +127,8 @@ let GAME = ((controller, gameVisualiser)=>{
 
 	function _makeDropTicker(level) {
 		const
-			loops = 22 - level*2,
+			cappedLevel = level>9 ? 10 : level,
+			loops = 88 - cappedLevel*8,
 			t = Ticker({ repeatEvery: loops })
 		;
 		t.value(); // move past initial tick
@@ -185,4 +186,4 @@ const GAMELOOP = () => {
 	GAME.step();
 };
 
-const gameId = window.setInterval(GAMELOOP, 50);
+const gameId = window.setInterval(GAMELOOP, 10);
