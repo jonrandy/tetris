@@ -13,7 +13,8 @@ export default function({
 	;
 
 	let
-		_score
+		_score,
+		_lastNextType
 	;
 
 	function _drawBoard(board, livePiece, target) {
@@ -34,9 +35,13 @@ export default function({
 		// action && console.log(action, state, Math.random());
 		if (state==PS.ACTIVE) _drawBoard(board, piece, gameArea);
 
-		if (score!=_score) {
-			debugOutput.value = "Score: "+score+"\nLevel: "+level;
+		let nextPieceType = nextPieces && nextPieces.pieces[0].tile.type;
+
+		if (score!=_score || _lastNextType!==nextPieceType) {
+			_lastNextType = nextPieceType;
+			debugOutput.value = "Score: "+score+"\nLevel: "+level+"\nNext type: "+_lastNextType;
 			_score = score;
+			
 		}
 
 	}
