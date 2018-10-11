@@ -1,0 +1,120 @@
+.next-block {
+	width:80px;
+	height:40px;
+	text-align: center;
+}
+
+.block-preview {
+	box-sizing: border-box;
+	border:none;
+	display:inline-block;
+	position:relative;
+	height: 100%;
+}
+
+.block-preview img{
+	box-sizing: border-box;
+	display:inline-block;
+	position:absolute;
+	height:50%;
+	background: #ccc;
+}
+
+/*----------------------------------------*/
+.t5 .block-preview {
+	width:100%;
+	margin-top:12.5%;
+}
+.t5 img {
+	width:25%;
+}
+/*----------------------------------------*/
+.t1 .block-preview, .t6 .block-preview, .t10 .block-preview, .t13 .block-preview, .t2 .block-preview {
+	width:75%;
+	margin-top:0;
+}
+.t1 img, .t6 img, .t10 img, .t13 img, .t2 img {
+	width:33.33333%;
+}
+/*----------------------------------------*/
+.t14 .block-preview {
+	width:50%;
+	margin-top:0;
+}
+.t14 img {
+	width:50%;
+}
+/*----------------------------------------*/
+
+.t5 .bl1, .t5 .bl2, .t5 .bl3, .t5 .bl4 { top: 0; 
+}
+.t5 .bl1 { left:0; }
+.t5 .bl2 { left:25%; }
+.t5 .bl3 { left:50%; }
+.t5 .bl4 { left:75%; }
+/*----------------------------------------*/
+
+.t1 .bl1, .t1 .bl2, .t1 .bl3 { top: 0; }
+.t1 .bl4 { top: 50%; }
+
+.t1 .bl1 { left: 0; }
+.t1 .bl2 { left: 33.33333%; }
+.t1 .bl3 { left: 66.66666%; }
+.t1 .bl4 { left: 66.66666%; }
+/*----------------------------------------*/
+
+.t6 .bl1, .t6 .bl2, .t6 .bl3 { top: 0; }
+.t6 .bl4 { top: 50%; }
+
+.t6 .bl1 { left: 0; }
+.t6 .bl2 { left: 33.33333%; }
+.t6 .bl3 { left: 66.66666%; }
+.t6 .bl4 { left: 0; }
+/*----------------------------------------*/
+
+.t14 .bl1, .t14 .bl2 { top: 0; }
+.t14 .bl3, .t14 .bl4 { top: 50%; }
+
+.t14 .bl1 { left: 0; }
+.t14 .bl2 { left: 50%; }
+.t14 .bl3 { left: 0%; }
+.t14 .bl4 { left: 50%; }
+/*----------------------------------------*/
+
+.t10 .bl1, .t10 .bl2 { top: 0; }
+.t10 .bl3, .t10 .bl4 { top: 50%; }
+
+.t10 .bl1 { left: 33.33333%; }
+.t10 .bl2 { left: 66.66666%; }
+.t10 .bl3 { left: 0%; }
+.t10 .bl4 { left: 33.33333%; }
+/*----------------------------------------*/
+
+.t13 .bl1, .t13 .bl2, .t13 .bl3 { top: 0; }
+.t13 .bl4 { top: 50%; }
+
+.t13 .bl1 { left: 0; }
+.t13 .bl2 { left: 33.33333%; }
+.t13 .bl3 { left: 66.66666%; }
+.t13 .bl4 { left: 33.33333%; }
+/*----------------------------------------*/
+
+.t2 .bl1, .t2 .bl2 { top: 0; }
+.t2 .bl3, .t2 .bl4 { top: 50%; }
+
+.t2 .bl1 { left: 0%; }
+.t2 .bl2 { left: 33.33333%; }
+.t2 .bl3 { left: 33.33333%; }
+.t2 .bl4 { left: 66.66666%; }
+
+
+
+.block-preview img {
+	transform: left top width;
+	transition-duration: 0.25s;
+}
+
+.block-preview { 
+  transform: width margin;
+	transition-duration: 0.25s;
+}
