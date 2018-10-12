@@ -118,3 +118,24 @@
   transform: width margin;
 	transition-duration: 0.25s;
 }
+
+
+#board {
+	width:200px;
+	height:400px;
+	background:#ddd;
+	padding: 0 10px 10px 10px;
+}
+
+#board > div {
+	box-sizing: border-box;
+	width:10%;
+	height:5%;
+	bokrder:1px solid #007;
+	font-size:10px;
+	text-align: center;
+	float:left;
+}
+#board > div.on {
+	background: #007;
+}
