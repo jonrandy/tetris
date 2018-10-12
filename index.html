@@ -3,6 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Anytris</title>
+	<link rel="stylesheet" type="text/css" href="tetris.css">
 	<style>
 		#board {
 			font-family: monaco;
@@ -16,6 +17,16 @@
 <body>
 	<textarea id="board"></textarea>
 	<textarea id="debug" cols=80 rows=12></textarea>
+
+	<div id="nextBlock" class="t1">
+		<div class="block-preview">
+			<img class="bl1">
+			<img class="bl2">
+			<img class="bl3">
+			<img class="bl4">
+		</div>
+	</div>
+
 	<script type="module" src="js/main.mjs"></script>
 </body>
 </html>

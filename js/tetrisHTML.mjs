@@ -9,7 +9,8 @@ export default function({
 	const
 		$ = q=>[...document.querySelectorAll(q) ],
 		gameArea = $('#board')[0],
-		debugOutput = $('#debug')[0]
+		debugOutput = $('#debug')[0],
+		nextPieceIndicator = $('#nextBlock')[0]
 	;
 
 	let
@@ -39,9 +40,9 @@ export default function({
 
 		if (score!=_score || _lastNextType!==nextPieceType) {
 			_lastNextType = nextPieceType;
-			debugOutput.value = "Score: "+score+"\nLevel: "+level+"\nNext type: "+_lastNextType;
 			_score = score;
-			
+			nextPieceIndicator.className = 't'+nextPieceType;
+			debugOutput.value = "Score: "+score+"\nLevel: "+level;
 		}
 
 	}
