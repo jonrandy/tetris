@@ -8,9 +8,10 @@ export default function({
 
 	const
 		$ = q=>[...document.querySelectorAll(q) ],
-		gameArea = $('#board')[0],
+		boardContainer = $('#board')[0],
 		debugOutput = $('#debug')[0],
-		nextPieceIndicator = $('#nextBlock')[0]
+		nextPieceIndicator = $('#nextBlock')[0],
+		boardDivs = _makeBoardDivs(boardContainer)
 	;
 
 	let
@@ -18,9 +19,18 @@ export default function({
 		_lastNextType
 	;
 
-	function _drawBoard(board, livePiece, target) {
-		let blocks = board.allBlocks({ activePieces: livePiece && [livePiece], cropAtPlayHeight:true });
-		target.value = blocks.reverse().map( row => '     '+row.map( col => col?'X':'.' ).join('')).join("\n");
+	function _makeBoardDivs(container) {
+		let i;
+		for (i=0; i<200; i++) container.appendChild(document.createElement('div'));
+		return $('#board div');
+	}
+
+	function _drawBoard(board, livePiece, divArr) {
+		let
+			blocks = board.allBlocks({ activePieces: livePiece && [livePiece], cropAtPlayHeight:true }),
+			flat = blocks.reverse().reduce((arr,row)=>arr.concat(row))
+		;
+		flat.forEach((col, idx) => divArr[idx].className = col ? 'on' : '');
 	}
 
 	function update({
@@ -34,7 +44,7 @@ export default function({
 	}) {
 
 		// action && console.log(action, state, Math.random());
-		if (state==PS.ACTIVE) _drawBoard(board, piece, gameArea);
+		if (state==PS.ACTIVE) _drawBoard(board, piece, boardDivs);
 
 		let nextPieceType = nextPieces && nextPieces.pieces[0].tile.type;
 
