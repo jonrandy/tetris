@@ -16,13 +16,13 @@ body {
 	height: 100%;
 }
 
-.block-preview div{
+.block-preview div {
 	box-sizing: border-box;
 	display:inline-block;
 	position:absolute;
 	height:50%;
 	background: #006589;
-
+}
 /*----------------------------------------*/
 .t5 .block-preview {
 	width:100%;
