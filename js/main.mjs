@@ -55,7 +55,7 @@ let GAME = ((controller, gameVisualiser)=>{
 				if (_winners.length) {
 					board.killBlocks(_winners);
 					score += _winners.length / board.width;
-					-_setLevel(1+(score/10)|0)
+					_setLevel(1+(score/10)|0);
 				}
 
 				if (!piece) {
