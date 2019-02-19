@@ -14,8 +14,11 @@ body {
 	height: 24px;
 	text-align: center;
 	position: absolute;
-	top: 10px;
-	left: 170px;
+	top: 4px;
+	left: 160px;
+	border-radius: 5px;
+	padding: 5px;
+	background:#a9b3ad;
 }
 
 .block-preview {
@@ -141,6 +144,16 @@ body {
 	padding: 0 6px 6px 6px;
 	border-width: 0 2px 2px 2px;
 	border-radius: 0 0 8px 8px;
+}
+
+#msg {
+	position: absolute;
+	left: 15px;
+	right:15px;
+	text-align: center;
+	padding-top: 150px;
+	font-weight: bold;
+	display:none;
 }
 
 #board > div {
