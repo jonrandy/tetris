@@ -21,6 +21,7 @@ let GAME = ((controller, gameVisualiser)=>{
 		action,
 		score,
 		state = PS.PASSIVE,
+		msg = CFG.MSG_INFO,
 		board = Board(),
 		piece,
 		level,
@@ -43,7 +44,7 @@ let GAME = ((controller, gameVisualiser)=>{
 
 			// Game not active - waiting for user to initiate game
 			[PS.PASSIVE] () {
-				if (action==GC.BUTTON_START) _start();
+				if (action) _start();
 			},
 
 			// Game is active
@@ -63,8 +64,7 @@ let GAME = ((controller, gameVisualiser)=>{
 					if (!board.pieceFits(piece)) return _gameOver();
 				}
 
-				if (action==GC.BUTTON_SELECT) return _togglePause(true);
-				if (action==GC.BUTTON_QUIT) return _quit();
+				if (action==GC.BUTTON_QUIT) return _togglePause(true);
 
 				if (_dropTicker.value()) {
 					_fellOrDropped = _moveDown();
@@ -84,8 +84,7 @@ let GAME = ((controller, gameVisualiser)=>{
 
 			// Game is active, but paused
 			[PS.PAUSED] () {
-				if (action==GC.BUTTON_SELECT) _togglePause(false);
-				if (action==GC.BUTTON_QUIT) _quit();
+				if (action==GC.BUTTON_QUIT) _togglePause(false);
 			}
 
 		}
@@ -96,19 +95,17 @@ let GAME = ((controller, gameVisualiser)=>{
 
 	function _start() {
 		_reset();
+		msg = '';
 		state = PS.ACTIVE;
 	}
 
 	function _togglePause(paused) {
 		state = paused ? PS.PAUSED : PS.ACTIVE;
-	}
-
-	function _quit() {
-		state = PS.PASSIVE;
+		msg = paused ? CFG.MSG_PAUSED : '';
 	}
 
 	function _gameOver() {
-		alert('Game over');
+		msg = CFG.MSG_GAMEOVER;
 		state = PS.PASSIVE;
 	}
 
@@ -169,7 +166,8 @@ let GAME = ((controller, gameVisualiser)=>{
 			piece,
 			nextPieces,
 			level,
-			action
+			action,
+			msg
 		});
 	}
 

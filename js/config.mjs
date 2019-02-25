@@ -27,13 +27,17 @@ export default {
 		left:					 37,	// Left arrow
 		right:				 39,	// Right arrow
 		buttonA:			 90,	// Z
-		buttonB:			 88,	// X
+		buttonB:			 32,	// Space
 		buttonSelect:	 9,		// Tab
 		buttonStart:	 13,	// Return
 		buttonQuit:		 27		// Escape					
 	},
 
-	PIECE_STARTPOS: [3, 22]
+	PIECE_STARTPOS: [3, 22],
+
+	MSG_INFO: "Arrows + Space<br>ESC Pause",
+	MSG_PAUSED: "Paused",
+	MSG_GAMEOVER: "Game Over"
 
 };
 

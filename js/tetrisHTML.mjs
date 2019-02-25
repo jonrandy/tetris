@@ -9,6 +9,7 @@ export default function({
 	const
 		$ = q=>[...document.querySelectorAll(q) ],
 		boardContainer = $('#board')[0],
+		msgArea = $('#msg')[0],
 		debugOutput = $('#debug')[0],
 		nextPieceIndicator = $('#nextBlock')[0],
 		boardDivs = _makeBoardDivs(boardContainer)
@@ -33,6 +34,12 @@ export default function({
 		flat.forEach((col, idx) => divArr[idx].className = col ? 'on' : '');
 	}
 
+	function _showMessage(message) {
+		msgArea.innerHTML = message;
+		msgArea.className = message ? 'on' : '';
+		boardContainer.className = message ? 'msg' : '';
+	}
+
 	function update({
 		score,
 		state,
@@ -40,10 +47,11 @@ export default function({
 		piece,
 		nextPieces,
 		level,
-		action
-	}) {
+		action,
+		msg = ''
+	} = {}) {
 
-		// action && console.log(action, state, Math.random());
+		_showMessage(msg);
 		if (state==PS.ACTIVE) _drawBoard(board, piece, boardDivs);
 
 		let nextPieceType = nextPieces && nextPieces.pieces[0].tile.type;
