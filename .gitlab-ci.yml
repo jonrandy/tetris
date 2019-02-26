@@ -1,3 +1,5 @@
+image: alpine:latest
+
 pages:
   stage: deploy
   script:
@@ -9,4 +11,3 @@ pages:
     - public
   only:
   - master
-  
