@@ -8,11 +8,6 @@
 </head>
 <body>
 	<h1>Tetris</h1>
-	<div id="board">
-		<span id="msg">Arrows + space<br>ESC pause</span>
-	</div>
-
-	<textarea id="debug" cols=80 rows=12></textarea>
 
 	<div id="nextBlock" class="t1">
 		<div class="block-preview">
@@ -21,6 +16,15 @@
 			<div class="bl3"></div>
 			<div class="bl4"></div>
 		</div>
+	</div>
+
+	<div id="board">
+		<span id="msg">Arrows + space<br>ESC pause</span>
+	</div>
+
+	<div id="info">
+		<span id="score">Score: <span class="val">0</span></span>
+		<span id="level">Level: <span class="val">0</span></span>
 	</div>
 
 	<script type="module" src="js/main.mjs"></script>

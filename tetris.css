@@ -10,6 +10,20 @@ body {
 	font-size:16px;
 }
 
+#info {
+	margin-top:-16px;
+	font-weight:bold;
+	display:none;
+}
+#info.on {
+	display:block;
+}
+
+#level {
+	float:right;
+	margin-right:4px;
+}
+
 #nextBlock {
 	width: 48px;
 	height: 24px;

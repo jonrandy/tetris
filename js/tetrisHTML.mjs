@@ -8,10 +8,13 @@ export default function({
 
 	const
 		$ = q=>[...document.querySelectorAll(q) ],
-		boardContainer = $('#board')[0],
-		msgArea = $('#msg')[0],
-		debugOutput = $('#debug')[0],
-		nextPieceIndicator = $('#nextBlock')[0],
+		$_ = q=>$(q)[0],
+		boardContainer = $_('#board'),
+		msgArea = $_('#msg'),
+		infoArea = $_('#info'),
+		scoreVal = $_('#score>.val'),
+		levelVal = $_('#level>.val'),
+		nextPieceIndicator = $_('#nextBlock'),
 		boardDivs = _makeBoardDivs(boardContainer)
 	;
 
@@ -31,6 +34,7 @@ export default function({
 			blocks = board.allBlocks({ activePieces: livePiece && [livePiece], cropAtPlayHeight:true }),
 			flat = blocks.reverse().reduce((arr,row)=>arr.concat(row))
 		;
+		!infoArea.className && (infoArea.className = 'on');
 		flat.forEach((col, idx) => divArr[idx].className = col ? 'on' : '');
 	}
 
@@ -60,7 +64,9 @@ export default function({
 			_lastNextType = nextPieceType;
 			_score = score;
 			nextPieceIndicator.className = 't'+nextPieceType;
-			debugOutput.value = "Score: "+score+"\nLevel: "+level;
+			scoreVal.innerHTML = score;
+			levelVal.innerHTML = level;
+			// debugOutput.value = "Score: "+score+"\nLevel: "+level;
 		}
 
 	}
