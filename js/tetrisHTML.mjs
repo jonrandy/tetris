@@ -3,7 +3,7 @@ import { PlayStates as PS } from './anytris.mjs';
 export default function({
 	skin = 'default',
 	document,
-	debugMode = false
+	CFG = {}
 } = {}) {
 
 	const
@@ -20,7 +20,8 @@ export default function({
 
 	let
 		_score,
-		_lastNextType
+		_lastNextType,
+		_highScore
 	;
 
 	function _makeBoardDivs(container) {
@@ -39,7 +40,7 @@ export default function({
 	}
 
 	function _showMessage(message) {
-		msgArea.innerHTML = message;
+		msgArea.innerHTML = message + (_highScore ? ('<br>'+CFG.MSG_HIGHSCORE+': '+_highScore) : '');
 		msgArea.className = message ? 'on' : '';
 		boardContainer.className = message ? 'msg' : '';
 	}
@@ -52,9 +53,11 @@ export default function({
 		nextPieces,
 		level,
 		action,
-		msg = ''
+		msg = '',
+		highScore = 0
 	} = {}) {
 
+		_highScore = highScore;
 		_showMessage(msg);
 		if (state==PS.ACTIVE) _drawBoard(board, piece, boardDivs);
 
@@ -66,7 +69,6 @@ export default function({
 			nextPieceIndicator.className = 't'+nextPieceType;
 			scoreVal.innerHTML = score;
 			levelVal.innerHTML = level;
-			// debugOutput.value = "Score: "+score+"\nLevel: "+level;
 		}
 
 	}

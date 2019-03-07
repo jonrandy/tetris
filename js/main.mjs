@@ -9,7 +9,7 @@ import Ticker from './ticker.mjs';
 
 const
 	GAME_CONTROLLER = SingleActionGameController( KeyboardDriver(CFG.KEYBOARD_CONTROLS), CFG.CONTROL_REPEAT),
-	VISUALISER = TetrisHTMLView({ document, debugMode: true })
+	VISUALISER = TetrisHTMLView({ document, CFG })
 ;
 
 
@@ -20,6 +20,7 @@ let GAME = ((controller, gameVisualiser)=>{
 
 		action,
 		score,
+		highScore = 0,
 		state = PS.PASSIVE,
 		msg = CFG.MSG_INFO,
 		board = Board(),
@@ -107,6 +108,7 @@ let GAME = ((controller, gameVisualiser)=>{
 	function _gameOver() {
 		msg = CFG.MSG_GAMEOVER;
 		state = PS.PASSIVE;
+		if (score>highScore) highScore = score;
 	}
 
 	function _reset() {
@@ -167,10 +169,10 @@ let GAME = ((controller, gameVisualiser)=>{
 			nextPieces,
 			level,
 			action,
-			msg
+			msg,
+			highScore
 		});
 	}
-
 
 	return {
 		step,

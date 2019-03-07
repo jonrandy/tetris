@@ -37,7 +37,8 @@ export default {
 
 	MSG_INFO: "Arrows + Space<br>ESC Pause",
 	MSG_PAUSED: "Paused",
-	MSG_GAMEOVER: "Game Over"
+	MSG_GAMEOVER: "Game Over",
+	MSG_HIGHSCORE: "Record"
 
 };
 
