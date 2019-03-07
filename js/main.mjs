@@ -1,26 +1,25 @@
-
 import CFG from './config.mjs';
 import { Board, PieceQueue, PlayStates as PS } from './anytris.mjs';
 import Tetrominos from './tetrominos.mjs';
 import TetrisHTMLView from './tetrisHTML.mjs';
 import { GC, SingleActionGameController, KeyboardDriver } from './gamecontroller.mjs';
 import Ticker from './ticker.mjs';
-
+import Store from './datastore.mjs';
 
 const
 	GAME_CONTROLLER = SingleActionGameController( KeyboardDriver(CFG.KEYBOARD_CONTROLS), CFG.CONTROL_REPEAT),
-	VISUALISER = TetrisHTMLView({ document, CFG })
+	VISUALISER = TetrisHTMLView({ document, CFG }),
+	DATA_STORE = Store()
 ;
 
 
-
-let GAME = ((controller, gameVisualiser)=>{
+let GAME = ((controller, gameVisualiser, persistentStore)=>{
 
 	let
 
 		action,
 		score,
-		highScore = 0,
+		highScore = persistentStore.get('highscore') || 0,
 		state = PS.PASSIVE,
 		msg = CFG.MSG_INFO,
 		board = Board(),
@@ -108,7 +107,7 @@ let GAME = ((controller, gameVisualiser)=>{
 	function _gameOver() {
 		msg = CFG.MSG_GAMEOVER;
 		state = PS.PASSIVE;
-		if (score>highScore) highScore = score;
+		if (score>highScore) highScore = persistentStore.set('highscore', score);
 	}
 
 	function _reset() {
@@ -179,7 +178,7 @@ let GAME = ((controller, gameVisualiser)=>{
 		draw
 	};
 
-})(GAME_CONTROLLER, VISUALISER);
+})(GAME_CONTROLLER, VISUALISER, DATA_STORE);
 
 const GAMELOOP = () => {
 	GAME.draw();
