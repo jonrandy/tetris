@@ -52,7 +52,6 @@ export default function({
 		piece,
 		nextPieces,
 		level,
-		action,
 		msg = '',
 		highScore = 0
 	} = {}) {
