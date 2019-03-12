@@ -21,7 +21,8 @@ export default function({
 	let
 		_score,
 		_lastNextType,
-		_highScore
+		_highScore,
+		_lastUpdate
 	;
 
 	function _makeBoardDivs(container) {
@@ -30,11 +31,8 @@ export default function({
 		return $('#board div');
 	}
 
-	function _drawBoard(board, livePiece, divArr) {
-		let
-			blocks = board.allBlocks({ activePieces: livePiece && [livePiece], cropAtPlayHeight:true }),
-			flat = blocks.reverse().reduce((arr,row)=>arr.concat(row))
-		;
+	function _drawBoard(blocks, livePiece, divArr) {
+		let flat = blocks.reverse().reduce((arr,row)=>arr.concat(row));
 		!infoArea.className && (infoArea.className = 'on');
 		flat.forEach((col, idx) => divArr[idx].className = col ? 'on' : '');
 	}
@@ -56,9 +54,19 @@ export default function({
 		highScore = 0
 	} = {}) {
 
+		let
+			blocks = board.allBlocks({ activePieces: piece && [piece], cropAtPlayHeight:true }),
+			newUpdate = JSON.stringify({
+				...arguments[0],
+				blocks
+			})
+		;
+		if (_lastUpdate==newUpdate) return false;
+		_lastUpdate = newUpdate;
+
 		_highScore = highScore;
 		_showMessage(msg);
-		if (state==PS.ACTIVE) _drawBoard(board, piece, boardDivs);
+		if (state==PS.ACTIVE) _drawBoard(blocks, piece, boardDivs);
 
 		let nextPieceType = nextPieces && nextPieces.pieces[0].tile.type;
 
@@ -69,6 +77,8 @@ export default function({
 			scoreVal.innerHTML = score;
 			levelVal.innerHTML = level;
 		}
+
+		return true;
 
 	}
 
