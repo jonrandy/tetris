@@ -1,4 +1,4 @@
-import Ticker from './ticker.mjs';
+import Ticker from './ticker.js';
 
 const	
 	UP = 						Symbol('UP'),

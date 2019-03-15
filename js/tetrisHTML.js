@@ -1,4 +1,4 @@
-import { PlayStates as PS } from './anytris.mjs';
+import { PlayStates as PS } from './anytris.js';
 
 export default function({
 	skin = 'default',

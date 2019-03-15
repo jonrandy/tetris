@@ -3,12 +3,14 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=1">
-	<title>Anytris</title>
-	<link rel="stylesheet" type="text/css" href="tetris.css">
+	<title>Tetris</title>
+	<link rel="apple-touch-icon" sizes="180x180" href="icon/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="icon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="icon/favicon-16x16.png">
+	<link rel="stylesheet" type="text/css" href="css/tetris.css">
 </head>
 <body>
 	<h1>Tetris</h1>
-
 	<div id="nextBlock" class="t1">
 		<div class="block-preview">
 			<div class="bl1"></div>
@@ -17,16 +19,13 @@
 			<div class="bl4"></div>
 		</div>
 	</div>
-
 	<div id="board">
 		<span id="msg">Arrows + space<br>ESC pause</span>
 	</div>
-
 	<div id="info">
 		<span id="score">Score: <span class="val">0</span></span>
 		<span id="level">Level: <span class="val">0</span></span>
 	</div>
-
-	<script type="module" src="js/main.mjs"></script>
+	<script type="module" src="js/main.js"></script>
 </body>
 </html>

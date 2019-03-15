@@ -1,10 +1,10 @@
-import CFG from './config.mjs';
-import { Board, PieceQueue, PlayStates as PS } from './anytris.mjs';
-import Tetrominos from './tetrominos.mjs';
-import TetrisHTMLView from './tetrisHTML.mjs';
-import { GC, SingleActionGameController, KeyboardDriver } from './gamecontroller.mjs';
-import Ticker from './ticker.mjs';
-import Store from './datastore.mjs';
+import CFG from './config.js';
+import { Board, PieceQueue, PlayStates as PS } from './anytris.js';
+import Tetrominos from './tetrominos.js';
+import TetrisHTMLView from './tetrisHTML.js';
+import { GC, SingleActionGameController, KeyboardDriver } from './gamecontroller.js';
+import Ticker from './ticker.js';
+import Store from './datastore.js';
 
 const
 	GAME_CONTROLLER = SingleActionGameController( KeyboardDriver(CFG.KEYBOARD_CONTROLS), CFG.CONTROL_REPEAT),
