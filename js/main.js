@@ -5,6 +5,9 @@ import TetrisHTMLView from './tetrisHTML.js';
 import { GC, SingleActionGameController, KeyboardDriver } from './gamecontroller.js';
 import Ticker from './ticker.js';
 import Store from './datastore.js';
+import { registerServiceWorker } from './pwa.js';
+
+registerServiceWorker('js/sw.js');
 
 const
 	GAME_CONTROLLER = SingleActionGameController( KeyboardDriver(CFG.KEYBOARD_CONTROLS), CFG.CONTROL_REPEAT),
@@ -186,3 +189,5 @@ const GAMELOOP = () => {
 };
 
 const gameId = window.setInterval(GAMELOOP, 5);
+
+console.log(navigator);
