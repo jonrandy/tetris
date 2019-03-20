@@ -7,7 +7,7 @@ import Ticker from './ticker.js';
 import Store from './datastore.js';
 import { registerServiceWorker } from './pwa.js';
 
-registerServiceWorker('js/sw.js');
+registerServiceWorker('sw.js');
 
 const
 	GAME_CONTROLLER = SingleActionGameController( KeyboardDriver(CFG.KEYBOARD_CONTROLS), CFG.CONTROL_REPEAT),
