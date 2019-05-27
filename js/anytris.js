@@ -12,7 +12,7 @@ const BlockCheck = (thisBlockType, withBoardBlockType) => !withBoardBlockType ? 
 const BlocksInFullRows = (allBlocks) => {
 	let width = allBlocks[0].length, winners = [];
 	allBlocks.forEach((row, y)=>{
-		if (row.map(x=>x?'x':'').join('').length == width) winners = winners.concat([...Array(width).keys()].map(x=>[x,y]));
+		if (row.map(x=>x?'x':'').join('').length == width) winners.push(...[...Array(width).keys()].map(x=>[x,y]));
 	});
 	return winners;
 };
@@ -51,7 +51,8 @@ export function Board({
 		let blocks = arrTranspose(blockTypeArr);
 		blocksAt.forEach(([x,y]) => {
 			if (drop) {
-				blocks[x] = blocks[x].filter((block, ypos)=>ypos!=y).concat([backgroundFill]);
+				blocks[x] = blocks[x].filter((block, ypos)=>ypos!=y);
+				blocks[x].push(backgroundFill);
 			} else {
 				blocks[x][y] = backgroundFill;
 			}
