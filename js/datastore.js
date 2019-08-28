@@ -16,17 +16,21 @@ function DataStore({
 
 export function CookieDriver() {
 
-	const RETAIN_SECONDS = 60*60*24*365; // keep data for a year
+	const
+		RETAIN_SECONDS = 60*60*24*365, // keep data for a year
+		COOKIE_NAME = 'data'
+	;
 
 	function _currentObj() {
-		return JSON.parse(document.cookie || '{}');
+		var cookieStr = document.cookie.replace(COOKIE_NAME + '=', '');
+		return JSON.parse(cookieStr || '{}');
 	}
 
 	return Object.freeze({
 		store(key, value) {
 			let obj = _currentObj();
 			obj[key] = value;
-			document.cookie = JSON.stringify(obj) + ';max-age=' + RETAIN_SECONDS;
+      document.cookie = COOKIE_NAME + '=' + JSON.stringify(obj) + ';max-age=' + RETAIN_SECONDS;
 			return value;
 		},
 		retrieve(key) {
