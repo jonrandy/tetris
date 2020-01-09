@@ -101,7 +101,7 @@ export function SingleActionGameController(driver, repeatConfig) {
 }
 
 
-
+// TODO - move to keyboard.js
 export function KeyboardDriver({
 	up						= 38, // Up arrow
 	down					= 40, // Down arrow
@@ -159,5 +159,27 @@ export function KeyboardDriver({
 	return _self = {
 		start
 	};
+
+}
+
+
+// TODO - move to touch.js
+export function TouchDriver({
+	defaultConfig: 'here'
+} = {}) {
+
+	let
+		_self,
+		sendSignal,
+		eventEmitter
+	;
+
+	function start(func, emitter) {
+
+	}
+
+	function stop() {
+
+	}
 
 }
