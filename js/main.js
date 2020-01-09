@@ -190,4 +190,8 @@ const GAMELOOP = () => {
 
 const gameId = window.setInterval(GAMELOOP, 5);
 
-console.log(navigator);
+function isMobileDevice() {
+    return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
+}
+
+isMobileDevice() && alert('Touch. I remember touch...');
