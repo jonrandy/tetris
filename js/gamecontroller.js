@@ -165,7 +165,7 @@ export function KeyboardDriver({
 
 // TODO - move to touch.js
 export function TouchDriver({
-	defaultConfig: 'here'
+	defaultConfig = 'here'
 } = {}) {
 
 	let
