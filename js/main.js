@@ -194,4 +194,4 @@ function isMobileDevice() {
     return (typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1);
 }
 
-isMobileDevice() && alert('Touch. I remember touch...');
+isMobileDevice() && console.log('Touch. I remember touch...');
